@@ -1,6 +1,6 @@
 # 🐾DOK(도크)
 
-![image](https://github.com/pado0711/DokProject-backend/assets/109504714/e421edf2-e741-4445-8b36-b9eaeb985b2c) [도크 바로가기](http://kdt-sw-6-team01.elicecoding.com)
+![image](https://github.com/pado0711/DokProject-backend/assets/109504714/e421edf2-e741-4445-8b36-b9eaeb985b2c)
 
 <br>
 
