@@ -19,6 +19,7 @@ export const ProfileInfo = () => {
     try {
       const response = await fetch(`${userUrl}/userInfo/${user._id}`, { credentials: 'include' });
       const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         dispatch(setMypageRating(data.rating));
@@ -30,8 +31,9 @@ export const ProfileInfo = () => {
   };
 
   useEffect(() => {
+    console.log(user);
     fetchData();
-  }, []);
+  }, [user]);
 
   return (
     <TotalFrame>

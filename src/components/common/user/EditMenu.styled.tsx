@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const IconBox = styled.div`
   position: absolute;
-  right: 8px;
+  top: 8px;
+  right: 10px;
   padding: 12px 10px;
 
   .icon {
