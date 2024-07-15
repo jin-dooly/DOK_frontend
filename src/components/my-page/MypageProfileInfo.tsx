@@ -11,7 +11,7 @@ export const MypageProfileInfo = () => {
   return (
     <TotalFrame>
       <Img>
-        <img className="mypageUserImg user-img" src={mypageUser.userImg || '/svg/mypageUser_image1.svg'} />
+        <img className="mypageUserImg user-img" src={mypageUser.userImg || '/svg/user_image1.svg'} />
       </Img>
       <div>
         <Name>

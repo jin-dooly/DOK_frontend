@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { initUserType } from '../types';
 import { AppDispatch, setDog, setIsLoading, setUser } from 'store/index';
+import { myInfoUrl } from 'api/apiUrls';
 
 export const useLoginCheck = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -9,7 +10,7 @@ export const useLoginCheck = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/users/myInfo', { credentials: 'include' });
+        const response = await fetch(myInfoUrl, { credentials: 'include' });
         const data = await response.json();
 
         if (response.ok) {
