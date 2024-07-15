@@ -1,9 +1,9 @@
-import * as styled from './ProfileInfo.styled';
 import { useEffect, useState } from 'react';
 import defaultImg from '/svg/user_image1.svg';
 import { UserNickname } from './UserNickname';
 import timeDiff from '../../../utils/timeDiff';
 import { useNavigate } from 'react-router-dom';
+import { PostUser, UserInfo } from './ProfileInfo.styled';
 
 interface ProfileInfoProps {
   _id: string;
@@ -14,7 +14,7 @@ interface ProfileInfoProps {
 }
 
 export function ProfileInfo({ _id, userImg, nickname, time, size }: ProfileInfoProps) {
-  const [userImage, setUserImage] = useState(userImg);
+  const [userImage, setUserImage] = useState<string | undefined>(userImg);
   const nav = useNavigate();
 
   const handleClick = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -33,12 +33,12 @@ export function ProfileInfo({ _id, userImg, nickname, time, size }: ProfileInfoP
   }, []);
 
   return (
-    <styled.PostUser className={size}>
+    <PostUser className={size}>
       <img className="user-img pointer" src={userImage} onClick={handleClick} />
-      <styled.UserInfo>
+      <UserInfo>
         <UserNickname nickname={nickname} />
         <span>{timeDiff(time.toString())}</span>
-      </styled.UserInfo>
-    </styled.PostUser>
+      </UserInfo>
+    </PostUser>
   );
 }

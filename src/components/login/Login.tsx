@@ -2,12 +2,12 @@ import TextField from '@mui/material/TextField';
 import { ButtonMain } from 'common/button/ButtonMain';
 import { ButtonSub } from 'common/button/ButtonSub';
 import { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch, setUser } from 'store/index';
 import { useNavigate } from 'react-router-dom';
 import { AlertSnackbar } from 'common/alert/AlertSnackbar';
 import { MainFrame, SubFrame } from './Login.style';
-import { logInUrl } from 'api/apiUrls';
+import { userUrl } from 'api/apiUrls';
 
 export function Login() {
   const [userId, setUserId] = useState<string>();
@@ -18,25 +18,29 @@ export function Login() {
 
   // 로그인 API 연동
   const handleLogin = async () => {
-    const login = await fetch(`${logInUrl}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId: userId,
-        password: password,
-      }),
-      credentials: 'include',
-    });
+    try {
+      const res = await fetch(`${userUrl}/signIn`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: userId,
+          password: password,
+        }),
+        credentials: 'include',
+      });
+      const data = await res.json();
 
-    const data = await login.json();    
-    
-    if (login.status === 201) {
-      dispatch(setUser(data));
-      nav('/');
-    } else {
+      if (res.ok) {
+        dispatch(setUser(data));
+        nav('/');
+      } else {
         setIsAlertSnackbar(true);
+        console.log(data);
+      }
+    } catch (e) {
+      console.log('fetch error: ', e);
     }
   };
 
@@ -45,13 +49,7 @@ export function Login() {
       <MainFrame>
         <SubFrame>
           <p>로그인하기</p>
-          <TextField
-            label="아이디"
-            placeholder="아이디를 작성해주세요"
-            defaultValue={userId}
-            onChange={(e) => setUserId(e.target.value)}
-            sx={{ margin: '5% 0 2% 0' }}
-          />
+          <TextField label="아이디" placeholder="아이디를 작성해주세요" defaultValue={userId} onChange={(e) => setUserId(e.target.value)} sx={{ margin: '5% 0 2% 0' }} />
           <TextField
             type="password"
             label="비밀번호"
@@ -73,7 +71,7 @@ export function Login() {
           </div>
         </SubFrame>
       </MainFrame>
-      <AlertSnackbar title='아이디 또는 비밀번호가 올바르지 않습니다. 다시 시도해주세요.' type='error' open={isAlertSnackbar} onClose={() => setIsAlertSnackbar(false)}/>
+      <AlertSnackbar title="아이디 또는 비밀번호가 올바르지 않습니다. 다시 시도해주세요." type="error" open={isAlertSnackbar} onClose={() => setIsAlertSnackbar(false)} />
     </>
   );
 }

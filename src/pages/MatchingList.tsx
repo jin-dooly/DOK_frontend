@@ -1,6 +1,6 @@
 import { MatchingBanner } from '../components/matching/Banner';
 import { useState, useEffect, Children } from 'react';
-import { AppDispatch, RootState, addMatchingPosts, resetMatchingPosts, setFilter, setMatchingPostCount, setMatchingPostEditId } from '../store';
+import { AppDispatch, RootState, addMatchingPosts, resetMatchingPosts, setFilter, setMatchingPostCount, setMatchingPostEditId } from 'store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { MatchingCard } from '../components/matching/Card';
 import { ScrollToTopButton } from '../components/common/button/ScrollTopButton';
@@ -41,23 +41,17 @@ export function MatchingListPage() {
       url += `&walkingTime=${dayjs(filter.walkingTime).format('YYYY-MM-DD')}`;
     }
 
-    const res = await fetch(url);
-    const data = await res.json();
-
-    dispatch(setMatchingPostCount(Number(data[0])));
-    dispatch(addMatchingPosts(data[1]));
-    setPage(_page + 1);
-
     try {
       const res = await fetch(url);
+      const data = await res.json();
 
       if (res.ok) {
-        const data = await res.json();
-
         dispatch(setMatchingPostCount(Number(data[0])));
         dispatch(addMatchingPosts(data[1]));
         setPage(_page + 1);
         setLoading(false);
+      } else {
+        console.log(data);
       }
     } catch (e) {
       console.log('fetch error: ', e);

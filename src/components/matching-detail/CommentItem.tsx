@@ -5,7 +5,7 @@ import { MatchingCommentType } from '../../types';
 import timeDiff from '../../utils/timeDiff';
 import { useEffect, useState } from 'react';
 import { AlertError } from 'common/alert/AlertError';
-import { matchingPostDetailUrl } from '../../api/apiUrls';
+import { matchingPostDetailUrl } from 'api/apiUrls';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, deleteIsOpenCommentInput, deleteMatchingComment, setIsOpenCommentInput, toggleIsOpenCommentInput } from 'store/index';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,7 @@ export function CommentItem({ comment, commentType }: type) {
   //해당 유저의 프로필로 이동
   const handleToProfile = () => {
     navigate(`/profile/${commentUser._id}`);
-  }
+  };
 
   //댓글 삭제
   const handleRemove = async () => {
@@ -50,6 +50,8 @@ export function CommentItem({ comment, commentType }: type) {
       if (res.ok) {
         dispatch(deleteMatchingComment(_id));
         dispatch(deleteIsOpenCommentInput(_id));
+      } else {
+        console.log(data);
       }
     } catch (err) {
       console.log('fetch error: ' + err);
@@ -77,7 +79,9 @@ export function CommentItem({ comment, commentType }: type) {
       <UserImg src={commentUser.userImg || userImage} className={`pointer user-img ${commentType}`} onClick={handleToProfile} />
       <div>
         <CommentInfo>
-          <span className='pointer' onClick={handleToProfile}>{commentUser.nickname}</span>
+          <span className="pointer" onClick={handleToProfile}>
+            {commentUser.nickname}
+          </span>
           <span>
             {timeDiff(createdAt)} {updatedAt !== createdAt && '(수정됨)'}
           </span>

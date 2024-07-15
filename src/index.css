@@ -3,9 +3,9 @@
 body {
   background-color: #fff;
   font-family: 'Noto Sans KR';
-  /* padding: 0 !important; */
 }
 
+/* HTML5 display-role reset for older browsers */
 html,
 body,
 div,
@@ -93,7 +93,6 @@ video {
   font-size: 100%;
   vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,

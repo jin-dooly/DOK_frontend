@@ -1,7 +1,7 @@
 import { TextField, InputAdornment, FormLabel, FormControl } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setErrorPaySelect, setPaySelect } from '../../store';
+import { AppDispatch, RootState, setErrorPaySelect, setPaySelect } from 'store/index';
 import { MonetizationOnOutlined } from '@mui/icons-material';
 
 export function PaySelect() {

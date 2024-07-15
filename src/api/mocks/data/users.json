@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "6568542b4617a781992641d9",
+    "userId": "dlwjdgP",
+    "password": "$2b$10$QuzyOmO62UMbILc1X38UeOAGx7Bt6DqZR.sRo3TKxqcOyIh.f3jdC",
+    "name": "이정혜",
+    "nickname": "정혜공주",
+    "address": {
+      "text": "서울 동대문구 서울시립대로 5",
+      "code": "1123010500",
+      "_id": "656a876b56903ead92244d5f"
+    },
+    "phoneNumber": "1111 2222",
+    "introduce": "",
+    "isCertificated": true,
+    "deletedAt": null,
+    "createdAt": "2023-11-30T09:21:47.539Z",
+    "updatedAt": "2023-12-02T01:24:59.228Z",
+    "__v": 0,
+    "userImg": "https://images-ext-2.discordapp.net/external/568eJuQwjap5eF0cpcK6nwv9qY7Fk4-hjd3lDWa1Rxo/https/pbs.twimg.com/media/F8fWq4PasAAW7Xu.jpg?format=webp&width=832&height=1108"
+  }
+]

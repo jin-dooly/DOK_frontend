@@ -1,37 +1,35 @@
-import Button from '@mui/material/Button';
-import { TextField, Radio, RadioGroup, FormControlLabel, FormControl } from '@mui/material';
+import { Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, setDog } from 'store/index';
 import { Link } from 'react-router-dom';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import dayjs from 'dayjs';
 import { AlertError } from 'common/alert/AlertError';
 import defaultImage from '/image/dogDefaultImage.png';
 import { AddButton, InfoFrame, TotalFrame } from './DogDetail.style';
-import { myDogUrl, myInfoUrl, uploadImageUrl } from 'api/apiUrls';
+import { userUrl, uploadImageUrl } from 'api/apiUrls';
 
 export const DogDetail = () => {
-
-  const [clicked, setClicked] = useState(false);
-  const [addCard, setAddCard] = useState(true);
-  const [openErrorAlert, setOpenErrorAlert] = useState(false);
+  const [clicked, setClicked] = useState<boolean>(false);
+  const [addCard, setAddCard] = useState<boolean>(true);
+  const [openErrorAlert, setOpenErrorAlert] = useState<boolean>(false);
   const [imagePath, setImagePath] = useState<string>(''); // 기본 이미지 설정
-  const { user } = useSelector((state: RootState) => state.user);
-  const [dogName, setDogName] = useState('');
+  const [dogName, setDogName] = useState<string>('');
   const [dogImg, setDogImg] = useState<string>('');
-  const [birth, setBirth] = useState('2023/01/01');
-  const [gender, setGender] = useState('male');
-  const [dogType, setDogType] = useState('');
-  const [personality, setPersonality] = useState('active');
-  const [note, setNote] = useState('');
+  const [birth, setBirth] = useState<string>('2023/01/01');
+  const [gender, setGender] = useState<string>('male');
+  const [dogType, setDogType] = useState<string>('');
+  const [personality, setPersonality] = useState<string>('active');
+  const [note, setNote] = useState<string>('');
+  const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const inputRef = useRef<HTMLInputElement>(null);
 
-// 백엔드에 데이터 보내기 전 최종 가공 
-// 데이터 받는 형태로 가공
+  // 백엔드에 데이터 보내기 전 최종 가공
+  // 데이터 받는 형태로 가공
   const processingData = () => {
     if (gender === 'male' || gender === 'Male') {
       setGender('Male');
@@ -48,54 +46,50 @@ export const DogDetail = () => {
     } else if (gender === 'calm' || gender === 'Calm') {
       setGender('얌전');
     }
-  }
+  };
 
   // 실제로 API 연동하는 부분
   const addMyDog = async () => {
-    const req = await fetch(`${myDogUrl}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: user.userId,
-        dogName: dogName,
-        dogImg: dogImg,
-        birth: birth,
-        gender: gender,
-        dogType: dogType,
-        personality: personality,
-        note: note,
-      }),
-      credentials: 'include',
-    });
+    try {
+      const res = await fetch(`${userUrl}/myDog`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: user.userId,
+          dogName: dogName,
+          dogImg: dogImg,
+          birth: birth,
+          gender: gender,
+          dogType: dogType,
+          personality: personality,
+          note: note,
+        }),
+        credentials: 'include',
+      });
+      const error = await res.json();
 
-    if (req.status === 201) {
-      const fetchData = async () => {
+      if (res.status === 201) {
         try {
-          const response = await fetch(`${myInfoUrl}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-          });
+          const response = await fetch(`${userUrl}/myInfo`, { credentials: 'include' });
+          const data = await response.json();
 
           if (response.status === 200) {
-            const data = await response.json();
             dispatch(setDog(data.userDogs));
-            // console.log(data.userDogs);
           } else {
-            // console.log('dog추가 오류');
+            console.log(data);
           }
-        } catch (error) {
-          // console.error('dog데이터 조회 오류:', error);
+        } catch (e) {
+          console.error('dog데이터 조회(fetch) 오류: ', e);
         }
-      };
-
-      fetchData();
+      } else {
+        console.log(error);
+      }
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
   // 데이터 초기화
   // 하기 useEffect의 데이터 초기화랑은 다르게 사용됨.
@@ -110,7 +104,7 @@ export const DogDetail = () => {
     setNote('');
     setClicked(!clicked);
     setAddCard(true);
-  }
+  };
 
   // 강아지 등록 API 연동을 위함
   const handleAddDog = () => {
@@ -132,27 +126,32 @@ export const DogDetail = () => {
       reader.onload = function (e: ProgressEvent<FileReader>) {
         const image = e.target?.result as string;
         setImagePath(image);
-        // console.log(imagePath);
       };
       reader.readAsDataURL(file);
 
       const formData = new FormData();
       formData.append('image', file);
 
-      await fetch(`${uploadImageUrl}`, {
-        method: 'POST',
-        body: formData,
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .then((data) => setDogImg(data[0]))
-        .catch((error) => {
-          // console.error('이미지 업로드 에러:', error);
+      try {
+        const res = await fetch(`${uploadImageUrl}`, {
+          method: 'POST',
+          body: formData,
+          credentials: 'include',
         });
+        const data = await res.json();
+
+        if (res.ok) {
+          setDogImg(data[0]);
+        } else {
+          console.log(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
-  // 이미지 클릭 시 
+  // 이미지 클릭 시
   const handleImageClick = () => {
     if (inputRef.current) {
       inputRef.current.click();
@@ -165,7 +164,7 @@ export const DogDetail = () => {
     !imagePath || !dogName || !dogType ? null : setAddCard(false);
   }, [imagePath, dogName, dogType]);
 
-  // 클릭될 때 마다 카드에 입력된 데이터 초기화(취소했을 때 데이터 남아있는것 방지) 
+  // 클릭될 때 마다 카드에 입력된 데이터 초기화(취소했을 때 데이터 남아있는것 방지)
   useEffect(() => {
     setDogName('');
     setImagePath(defaultImage);

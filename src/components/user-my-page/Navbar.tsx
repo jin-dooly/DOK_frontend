@@ -1,11 +1,11 @@
-import React from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Tab, Box } from '@mui/material';
 import { Introduce } from './Introduce';
 import { TotalFrame } from './Navbar.style';
+import { useState } from 'react';
 
 export const Navbar = () => {
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = useState<string>('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);

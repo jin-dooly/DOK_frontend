@@ -3,7 +3,6 @@ import * as styled from './MatchingForm.styled';
 import { PostCreateFormLayout } from 'common/create-page/PostCreateFormLayout';
 import { AlertSnackbar } from 'common/alert/AlertSnackbar';
 import { AlertSuccess } from 'common/alert/AlertSuccess';
-
 import { DogSelect } from '../components/matching-form/DogSelect';
 import { DateSelect } from '../components/matching-form/DateSelect';
 import { DurationSelect } from '../components/matching-form/DurationSelect';
@@ -12,7 +11,7 @@ import { RequestTextField } from '../components/matching-form/RequestTextField';
 import { LocationSelect } from '../components/matching-form/LocationSelect';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch, RootState, setDateSelect, setDogSelect, setDurationSelect, setLocation, setLocationDetail, setPaySelect, setRequestText } from '../store';
+import { AppDispatch, RootState, setDateSelect, setDogSelect, setDurationSelect, setLocation, setLocationDetail, setPaySelect, setRequestText } from 'store/index';
 import { useNavigate } from 'react-router';
 import { PostCreateGroup } from 'common/create-page/PostCreateGroup';
 import dayjs from 'dayjs';
@@ -23,12 +22,29 @@ import { matchingFormUrl } from 'api/apiUrls';
 import dateTimeFormat from '../utils/dateTimeFormat';
 import durationTimeFormat from '../utils/durationTimeFormat';
 import { AlertBottom } from 'common/alert/AlertBottom';
+import { DogType } from 'src/types';
 
 export function MatchingUpdatePage() {
   const { dogSelect, errorDogSelect, dateSelect, errorDateSelect, durationSelect, paySelect, errorPaySelect, requestText, locationSelect, locationDetailSelect } = useSelector(
     (state: RootState) => state.matchingForm,
   );
-  const [initData, setInitData] = useState({ dogSelect, dateSelect, durationSelect, paySelect, requestText, locationSelect, locationDetailSelect });
+  const [initData, setInitData] = useState<{
+    dogSelect: DogType | undefined;
+    dateSelect: string | undefined;
+    durationSelect: number;
+    paySelect: number;
+    requestText: string | undefined;
+    locationSelect: { text: string; code: string } | undefined;
+    locationDetailSelect: string;
+  }>({
+    dogSelect,
+    dateSelect,
+    durationSelect,
+    paySelect,
+    requestText,
+    locationSelect,
+    locationDetailSelect,
+  });
   const dispatch = useDispatch<AppDispatch>();
   const [isForbidden, setIsForbidden] = useState<boolean>(false);
   const [openError, setOpenError] = useState<boolean>(false);
@@ -136,64 +152,60 @@ export function MatchingUpdatePage() {
     };
   }, []);
 
-  return (
-    <>
-      {isForbidden ? (
-        <Forbidden />
-      ) : (
-        <styled.CertifiCreate>
-          <AlertBottom open={openAlertBottom} onClose={() => setOpenAlertBottom(false)} type="error" desc={alertDesc} />
+  return isForbidden ? (
+    <Forbidden />
+  ) : (
+    <styled.CertifiCreate>
+      <AlertBottom open={openAlertBottom} onClose={() => setOpenAlertBottom(false)} type="error" desc={alertDesc} />
 
-          <AlertSnackbar open={openError} onClose={() => setOpenError(false)} type="error" title="잘못된 입력" desc={validateText} />
-          <AlertSuccess
-            open={openSubmit}
-            onClose={() => setOpenSubmit(false)}
-            onClick={handleSubmit}
-            title="글을 수정하시겠습니까?"
-            desc={`${dogSelect?.dogName} | ${dateTimeFormat(dateSelect || '', 'date-time')} | ${durationTimeFormat(
-              durationSelect,
-            )} | ${paySelect}원\n요청 사항 : ${requestText}\n만남 위치 : ${locationSelect?.text} ${locationDetailSelect || ''}`}
-          />
-          <AlertError open={openCancle} onClose={() => setOpenCancle(false)} onClick={handleCancle} title="수정을 취소하시겠습니까?" desc="작성한 내용은 저장되지 않습니다." />
+      <AlertSnackbar open={openError} onClose={() => setOpenError(false)} type="error" title="잘못된 입력" desc={validateText} />
+      <AlertSuccess
+        open={openSubmit}
+        onClose={() => setOpenSubmit(false)}
+        onClick={handleSubmit}
+        title="글을 수정하시겠습니까?"
+        desc={`${dogSelect?.dogName} | ${dateTimeFormat(dateSelect || '', 'date-time')} | ${durationTimeFormat(
+          durationSelect,
+        )} | ${paySelect}원\n요청 사항 : ${requestText}\n만남 위치 : ${locationSelect?.text} ${locationDetailSelect || ''}`}
+      />
+      <AlertError open={openCancle} onClose={() => setOpenCancle(false)} onClick={handleCancle} title="수정을 취소하시겠습니까?" desc="작성한 내용은 저장되지 않습니다." />
 
-          <div className="body">
-            <PostCreateFormLayout title="매칭 신청 수정하기" buttonText="수정하기" onSubmit={handleClickSubmit} onReset={handleClickCancle}>
-              <PostCreateGroup title="Pet">
+      <div className="body">
+        <PostCreateFormLayout title="매칭 신청 수정하기" buttonText="수정하기" onSubmit={handleClickSubmit} onReset={handleClickCancle}>
+          <PostCreateGroup title="Pet">
+            <styled.Contents>
+              <DogSelect isUpdate={true} />
+            </styled.Contents>
+          </PostCreateGroup>
+
+          <PostCreateGroup title="Infomation">
+            <div className="flex">
+              <div className="half">
                 <styled.Contents>
-                  <DogSelect isUpdate={true} />
+                  <DateSelect />
                 </styled.Contents>
-              </PostCreateGroup>
-
-              <PostCreateGroup title="Infomation">
-                <div className="flex">
-                  <div className="half">
-                    <styled.Contents>
-                      <DateSelect />
-                    </styled.Contents>
-                    <styled.Contents>
-                      <DurationSelect />
-                    </styled.Contents>
-                  </div>
-                  <div className="half">
-                    <styled.Contents>
-                      <PaySelect />
-                    </styled.Contents>
-                    <styled.Contents>
-                      <LocationSelect editLocation={{ text: loc.state.post.location.text, code: loc.state.post.location.code }} />
-                    </styled.Contents>
-                  </div>
-                </div>
-              </PostCreateGroup>
-
-              <PostCreateGroup title="Addition">
                 <styled.Contents>
-                  <RequestTextField isUpdate={true} />
+                  <DurationSelect />
                 </styled.Contents>
-              </PostCreateGroup>
-            </PostCreateFormLayout>
-          </div>
-        </styled.CertifiCreate>
-      )}
-    </>
+              </div>
+              <div className="half">
+                <styled.Contents>
+                  <PaySelect />
+                </styled.Contents>
+                <styled.Contents>
+                  <LocationSelect editLocation={{ text: loc.state.post.location.text, code: loc.state.post.location.code }} />
+                </styled.Contents>
+              </div>
+            </div>
+          </PostCreateGroup>
+
+          <PostCreateGroup title="Addition">
+            <styled.Contents>
+              <RequestTextField isUpdate={true} />
+            </styled.Contents>
+          </PostCreateGroup>
+        </PostCreateFormLayout>
+      </div>
+    </styled.CertifiCreate>
   );
 }

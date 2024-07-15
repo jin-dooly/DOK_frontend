@@ -1,5 +1,4 @@
-import React from 'react';
-import * as styled from './PostCreateFormLayout.styled';
+import { Buttons, FormLayout } from './PostCreateFormLayout.styled';
 import { ButtonMain } from 'common/button/ButtonMain';
 import { ButtonGray } from 'common/button/ButtonGray';
 
@@ -13,13 +12,13 @@ interface PostCreateFormLayoutProps {
 
 export function PostCreateFormLayout({ title, children, onSubmit, onReset, buttonText }: PostCreateFormLayoutProps) {
   return (
-    <styled.FormLayout>
+    <FormLayout>
       <h2>{title}</h2>
       <div className="contents">{children}</div>
-      <styled.Buttons>
+      <Buttons>
         <ButtonMain text={buttonText || '작성하기'} onClick={onSubmit} />
         <ButtonGray text="취소" onClick={onReset} />
-      </styled.Buttons>
-    </styled.FormLayout>
+      </Buttons>
+    </FormLayout>
   );
 }

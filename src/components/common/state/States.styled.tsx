@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const EmptyData = styled.div`
+export const EmptyDataLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@ export const EmptyData = styled.div`
   }
 `;
 
-export const Forbidden = styled.div`
+export const ForbiddenLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,14 +31,14 @@ export const Forbidden = styled.div`
   }
 `;
 
-export const Loading = styled.div`
+export const LoadingLayout = styled.div`
   padding: 100px 60px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const NotFound = styled.div`
+export const NotFoundLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

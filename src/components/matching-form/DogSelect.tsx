@@ -1,7 +1,7 @@
 import { FormControl, FormLabel, InputAdornment, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import dog from '/svg/dog_default.svg';
 import { Children, useEffect, useState } from 'react';
-import { AppDispatch, RootState, setDogSelect, setErrorDogSelect } from '../../store';
+import { AppDispatch, RootState, setDogSelect, setErrorDogSelect } from 'store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { DogType } from '../../types';
 import { Pets } from '@mui/icons-material';
@@ -25,10 +25,17 @@ export function DogSelect({ isUpdate }: { isUpdate?: boolean }) {
 
   // 로그인 한 유저의 강아지 정보 가져오기
   const getUserDog = async () => {
-    const res = await fetch(`${userUrl}/myDog`, { credentials: 'include' });
-    const data = await res.json();
-    if (res.ok) {
-      setDogs(data);
+    try {
+      const res = await fetch(`${userUrl}/myDog`, { credentials: 'include' });
+      const data = await res.json();
+
+      if (res.ok) {
+        setDogs(data);
+      } else {
+        console.log(data);
+      }
+    } catch (e) {
+      console.log('fetch error: ', e);
     }
   };
 

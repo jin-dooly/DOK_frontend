@@ -5,7 +5,7 @@ import { AlertLogin } from 'common/alert/AlertLogin';
 import { AlertSnackbar } from 'common/alert/AlertSnackbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, setOpenAlertLogin } from 'store/index';
-import { matchingPostDetailUrl } from '../../api/apiUrls';
+import { matchingPostDetailUrl } from 'api/apiUrls';
 import { ButtonContainer } from './HandlerRequestButton.style';
 
 export function HandlerRequestButton() {
@@ -18,11 +18,6 @@ export function HandlerRequestButton() {
   const [isRequestHandler, setIsRequestHandler] = useState<boolean>(false);
   const isLogined: boolean = user._id !== '';
 
-  useEffect(() => {
-    const isIncludeHandler = requestHandlers.filter((handler) => handler.user._id === user._id).length !== 0;
-    setIsRequestHandler(isIncludeHandler);
-  }, [requestHandlers]);
-
   //비회원 신청 불가능, 중복 신청 불가능
   const handleOnClick = () => {
     //비회원은 불가능
@@ -33,7 +28,7 @@ export function HandlerRequestButton() {
     }
   };
 
-  //핸들러 신청 
+  //핸들러 신청
   const handleOnClickApply = () => {
     const sendRequestHandler = async () => {
       try {
@@ -44,9 +39,12 @@ export function HandlerRequestButton() {
           },
         });
 
-        if (res.status === 200) {
+        if (res.ok) {
           setOpenSuccessRequestSnackbar(true);
           setIsRequestHandler(true);
+        } else {
+          const data = await res.json();
+          console.log(data);
         }
       } catch (err) {
         console.log('fetch error: ' + err);
@@ -55,6 +53,11 @@ export function HandlerRequestButton() {
 
     sendRequestHandler();
   };
+
+  useEffect(() => {
+    const isIncludeHandler = requestHandlers.filter((handler) => handler.user._id === user._id).length !== 0;
+    setIsRequestHandler(isIncludeHandler);
+  }, [requestHandlers]);
 
   return (
     <ButtonContainer>

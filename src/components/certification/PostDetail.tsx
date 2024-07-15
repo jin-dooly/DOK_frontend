@@ -1,4 +1,4 @@
-import * as styled from './PostDetail.styled';
+import { Contents, DetailBox, Left, Right, SlideIconButton, Top } from './PostDetail.styled';
 import { Children, useEffect, useState } from 'react';
 import { Box, IconButton, MobileStepper } from '@mui/material';
 import { AccessTime, ChatOutlined, Clear, KeyboardArrowLeft, KeyboardArrowRight, LocationOn } from '@mui/icons-material';
@@ -18,7 +18,7 @@ export function CertificationPostDetail({ handleClose }: CertificationPostDetail
   const { certificationDetailPost } = useSelector((state: RootState) => state.certification);
   let { user, matchingPost, certificationImg, postText, sublocation, review, createdAt } = certificationDetailPost;
 
-  const [isEditable, setIsEditable] = useState<boolean>(false); //default false
+  const [isEditable, setIsEditable] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [currentImgIndex, setCurrentImgIndex] = useState<number>(0);
   const maxSteps = certificationImg.length;
@@ -45,11 +45,11 @@ export function CertificationPostDetail({ handleClose }: CertificationPostDetail
   }, []);
 
   return (
-    <styled.DetailBox className="certifiDetail">
+    <DetailBox className="certifiDetail">
       <IconButton className="close" onClick={handleClose}>
         <Clear />
       </IconButton>
-      <styled.Left className="detail-left">
+      <Left className="detail-left">
         <div className="image-box" style={{ width: `${maxSteps * 100}%` }}>
           {Children.toArray(
             certificationImg.map((step) => (
@@ -75,26 +75,26 @@ export function CertificationPostDetail({ handleClose }: CertificationPostDetail
           position="static"
           activeStep={currentImgIndex}
           nextButton={
-            <styled.SlideIconButton onClick={handleNextButtonClick} disabled={currentImgIndex === maxSteps - 1 || maxSteps === 0} sx={{ alignItems: 'end' }}>
+            <SlideIconButton onClick={handleNextButtonClick} disabled={currentImgIndex === maxSteps - 1 || maxSteps === 0} sx={{ alignItems: 'end' }}>
               <KeyboardArrowRight />
-            </styled.SlideIconButton>
+            </SlideIconButton>
           }
           backButton={
-            <styled.SlideIconButton onClick={handleBackButtonClick} disabled={currentImgIndex === 0 || maxSteps === 0}>
+            <SlideIconButton onClick={handleBackButtonClick} disabled={currentImgIndex === 0 || maxSteps === 0}>
               <KeyboardArrowLeft />
-            </styled.SlideIconButton>
+            </SlideIconButton>
           }
           sx={{ background: 'none', width: '100%', height: '100%', alignSelf: 'end' }}
         />
-      </styled.Left>
+      </Left>
 
-      <styled.Right className="custom-scrollbar">
+      <Right className="custom-scrollbar">
         <div>
-          <styled.Top>
+          <Top>
             <ProfileInfo _id={user._id} nickname={user.nickname} userImg={user.userImg} time={createdAt} />
-          </styled.Top>
+          </Top>
 
-          <styled.Contents>
+          <Contents>
             <div>
               <img className="icon" src="/svg/card_dog_icon.svg" />
               <div className="title">강아지</div>
@@ -119,10 +119,10 @@ export function CertificationPostDetail({ handleClose }: CertificationPostDetail
               <div className="title">인증 내용</div>
             </div>
             <div className="text detail">{postText}</div>
-          </styled.Contents>
+          </Contents>
         </div>
         {isEditing ? <ReviewEdit setIsEditing={setIsEditing} /> : review.rating !== 0 && <Review isEditable={isEditable} setIsEditing={setIsEditing} />}
-      </styled.Right>
-    </styled.DetailBox>
+      </Right>
+    </DetailBox>
   );
 }

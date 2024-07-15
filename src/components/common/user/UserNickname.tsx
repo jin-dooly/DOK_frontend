@@ -1,4 +1,4 @@
-import * as styled from './UserNickname.styled';
+import { NicknameBox } from './UserNickname.styled';
 import profile_badge from '/svg/profile_badge.svg';
 
 interface UserNicknameProps {
@@ -8,9 +8,9 @@ interface UserNicknameProps {
 
 export function UserNickname({ nickname, badge }: UserNicknameProps) {
   return (
-    <styled.NicknameBox>
+    <NicknameBox>
       <span>{nickname || 'user'}</span>
       {badge && <img src={profile_badge} />}
-    </styled.NicknameBox>
+    </NicknameBox>
   );
 }

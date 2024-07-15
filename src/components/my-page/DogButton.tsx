@@ -8,13 +8,13 @@ import { useLocation, useParams } from 'react-router-dom';
 import { AddButton } from './DogButton.style';
 
 export const DogButton = () => {
-  const [clicked, setClicked] = useState(false);
-  const [isLoding, setIsLoding] = useState(true);
+  const [clicked, setClicked] = useState<boolean>(false);
+  const [isLoding, setIsLoding] = useState<boolean>(true);
   const { pathname } = useLocation();
   const { dog } = useSelector((state: RootState) => state.user);
   const { mypageDog } = useSelector((state: RootState) => state.mypageUser);
   const { id } = useParams();
-  
+
   useEffect(() => {
     setIsLoding(false);
   }, [dog]);
@@ -23,9 +23,8 @@ export const DogButton = () => {
     <>
       {isLoding ? (
         <Loading />
-      ) : (pathname === `/profile/${id}` ? (
+      ) : pathname === `/profile/${id}` ? (
         <>
-        {/* path가 profile 들어왔을 경우에 dogCard 추가하는 버튼 안보이게 */}
           {mypageDog.map((item) => (
             <DogCard
               dogImg={item.dogImg}
@@ -38,8 +37,9 @@ export const DogButton = () => {
               note={item.note}
             />
           ))}
-        </> ) : (
-          <>
+        </>
+      ) : (
+        <>
           {dog.map((item) => (
             <DogCard
               dogImg={item.dogImg}
@@ -54,7 +54,6 @@ export const DogButton = () => {
           ))}
           {clicked ? <DogDetail /> : <AddButton onClick={() => setClicked(!clicked)}>+</AddButton>}
         </>
-        )
       )}
     </>
   );

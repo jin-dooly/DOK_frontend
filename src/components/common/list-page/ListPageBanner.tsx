@@ -1,4 +1,4 @@
-import * as styled from './ListPageBanner.styled';
+import { Section, InnerBox, TitleBox, RightBox } from './ListPageBanner.styled';
 import petIcon from '/svg/pets.svg';
 import footprintImg from '/svg/six_footprint.svg';
 import React from 'react';
@@ -12,16 +12,16 @@ interface ListPageBannerProps {
 
 export function ListPageBanner({ title, desc, children, color }: ListPageBannerProps) {
   return (
-    <styled.Section color={color}>
-      <styled.InnerBox>
+    <Section color={color}>
+      <InnerBox>
         <img className="pet-image" src={petIcon} />
-        <styled.TitleBox>
+        <TitleBox>
           <h1>{title}</h1>
           <div className="desc">{desc}</div>
-        </styled.TitleBox>
+        </TitleBox>
         <img className="footprint" src={footprintImg} />
-        <styled.RightBox>{children}</styled.RightBox>
-      </styled.InnerBox>
-    </styled.Section>
+        <RightBox>{children}</RightBox>
+      </InnerBox>
+    </Section>
   );
 }

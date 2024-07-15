@@ -4,7 +4,7 @@ import { HandlerListItem } from './HandlerLIstItem';
 import { ButtonMain } from 'common/button/ButtonMain';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, updateMatchingStatus } from 'store/index';
-import { matchingPostDetailUrl } from '../../api/apiUrls';
+import { matchingPostDetailUrl } from 'api/apiUrls';
 import { AlertSnackbar } from 'common/alert/AlertSnackbar';
 import { AlertSuccess } from 'common/alert/AlertSuccess';
 import { ButtonContainer, HandlerListContainer, HandlerSelectLayout, SelectButtonContainer, SelectorLayout } from './HandlerSelectContainer.style';
@@ -48,19 +48,18 @@ export function HandlerSelectContainer() {
   const handleOnSubmit = () => {
     const sendSelectedHandler = async () => {
       if (!selectedHandler) return;
+
       const { matchingPostId, user } = selectedHandler;
       try {
-        const res = await fetch(`${matchingPostDetailUrl}/handler/${selectedHandler?.matchingPostId}/${user._id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const res = await fetch(`${matchingPostDetailUrl}/handler/${selectedHandler?.matchingPostId}/${user._id}`, { method: 'PUT' });
 
         if (res.ok) {
           setOpenSuccessSnackbar(true);
           setIsSendedMatching(true);
           dispatch(updateMatchingStatus(matchingPostId));
+        } else {
+          const data = await res.json();
+          console.log(data);
         }
       } catch (err) {
         console.log('fetch error: ' + err);
@@ -105,12 +104,7 @@ export function HandlerSelectContainer() {
         </ButtonContainer>
       ) : null}
       <AlertSnackbar title="핸들러를 선택해주세요." open={openErrorAlert} onClose={() => setOpenErrorAlert(false)} type="error" />
-      <AlertSuccess
-        title={`${selectedHandler?.user.nickname}님과 매칭하시겠습니까?`}
-        open={openSuccessAlert}
-        onClick={handleOnSubmit}
-        onClose={() => setOpenSuccessAlert(false)}
-      />
+      <AlertSuccess title={`${selectedHandler?.user.nickname}님과 매칭하시겠습니까?`} open={openSuccessAlert} onClick={handleOnSubmit} onClose={() => setOpenSuccessAlert(false)} />
       <AlertSnackbar title="매칭이 완료된 글입니다." open={openIsSelectedSnackber} onClose={() => setOpenIsSelectedSnackber(false)} type="error" duration={1500} />
       <AlertSnackbar title="선택한 핸들러와 매칭이 완료되었습니다." open={openSuccessSnackbar} onClose={() => setOpenSuccessSnackbar(false)} />
     </HandlerSelectLayout>

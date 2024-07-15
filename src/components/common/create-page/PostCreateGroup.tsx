@@ -1,4 +1,4 @@
-import * as styled from './PostCreateGroup.styled';
+import { Group, TitleLayout } from './PostCreateGroup.styled';
 
 interface PostCreateGroupProps {
   title: string;
@@ -7,12 +7,12 @@ interface PostCreateGroupProps {
 
 export function PostCreateGroup({ title, children }: PostCreateGroupProps) {
   return (
-    <styled.Group>
-      <styled.TitleLayout>
+    <Group>
+      <TitleLayout>
         <span className="title">{title}</span>
         <hr />
-      </styled.TitleLayout>
+      </TitleLayout>
       {children}
-    </styled.Group>
+    </Group>
   );
 }

@@ -66,16 +66,16 @@ export function CertificationCreatePage() {
         credentials: 'include',
         body: formData,
       });
+      const data = await res.json();
 
       if (res.ok) {
-        const data = await res.json();
-
         setImages(newImages);
         setImagesURL(data);
         setErrorImages(false);
       } else {
         setAlertDesc('사진 업로드에 실패하였습니다.');
         setOpenAlertBottom(true);
+        console.log(data);
       }
     } catch (e) {
       console.log('fetch error: ', e);
@@ -141,12 +141,14 @@ export function CertificationCreatePage() {
         },
         body: JSON.stringify(reqBody),
       });
+      const data = await res.json();
 
       if (res.ok) {
         nav('/certification');
       } else {
         setAlertDesc('인증 글 등록에 실패하였습니다. 다시 시도해주세요.');
         setOpenAlertBottom(true);
+        console.log(data);
       }
     } catch (e) {
       console.log('fetch error: ', e);
@@ -179,15 +181,16 @@ export function CertificationCreatePage() {
     (async () => {
       try {
         const res = await fetch(`${matchingPostDetailUrl}/${postId}`);
+        const data = await res.json();
 
         if (res.ok) {
-          const data = await res.json();
-
           if (data.length) {
             setMatchingPost(data[0]);
             setIsLoading(false);
             return;
           }
+        } else {
+          console.log(data);
         }
 
         setIsNotFound(true);

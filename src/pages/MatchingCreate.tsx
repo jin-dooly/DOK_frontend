@@ -12,7 +12,7 @@ import { RequestTextField } from '../components/matching-form/RequestTextField';
 import { LocationSelect } from '../components/matching-form/LocationSelect';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch, RootState, setOpenAlertLogin } from '../store';
+import { AppDispatch, RootState, setOpenAlertLogin } from 'store/index';
 import { useNavigate } from 'react-router';
 import { PostCreateGroup } from 'common/create-page/PostCreateGroup';
 import dayjs from 'dayjs';
@@ -28,7 +28,17 @@ export function MatchingCreatePage() {
     useSelector((state: RootState) => state.matchingForm);
   const { user: _user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
-  const [initData, setInitData] = useState({ dateSelect, durationSelect, paySelect, locationSelect });
+  const [initData, setInitData] = useState<{
+    dateSelect: string | undefined;
+    durationSelect: number;
+    paySelect: number;
+    locationSelect: { text: string; code: string } | undefined;
+  }>({
+    dateSelect,
+    durationSelect,
+    paySelect,
+    locationSelect,
+  });
   const [openError, setOpenError] = useState<boolean>(false);
   const [validateText, setValidateText] = useState<string>('');
   const [openDogError, setOpenDogError] = useState<boolean>(false);

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, TextField, FormControlLabel, Checkbox, Modal } from '@mui/material';
 import { PersonInformation, TrilateralAgreement } from './Agreement';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
-import { signUpUrl } from 'api/apiUrls';
+import { userUrl } from 'api/apiUrls';
 import { Agreement, ButtonDiv, LoginDiv, MainDiv } from './SignUp.style';
 
 export function SignUp() {
-
-  let splitPhoneValue : string = '';
-  let firstPhoneValue : string = '';
-  let secondPhoneValue : string = '';
+  let splitPhoneValue: string = '';
+  let firstPhoneValue: string = '';
+  let secondPhoneValue: string = '';
 
   const [idCheck, setIdCheck] = useState<boolean>(false);
   const [pwdCheck, setPwdCheck] = useState<boolean>(false);
@@ -32,10 +31,10 @@ export function SignUp() {
   const [phoneValue, setPhoneValue] = useState<string>();
   const [nicknameValue, setNicknameValue] = useState<string>();
 
-  const [checked, setChecked] = React.useState([true, false]);
+  const [checked, setChecked] = useState<[boolean, boolean]>([true, false]);
 
   const nav = useNavigate();
-  
+
   // 약관 동의 모두 체크 시
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([event.target.checked, event.target.checked]);
@@ -72,11 +71,6 @@ export function SignUp() {
     return check.test(`${pwdValue}`);
   };
 
-  // 이메일 인증
-  const handleEmailCertification = () => {
-    
-  };
-
   // 주소 검색 API 연동
   const handleAddressSearch = () => {
     setIsOpen(true);
@@ -91,9 +85,12 @@ export function SignUp() {
 
   // 회원가입 API를 연동하는 로직
   const signUp = async () => {
-
-    try{
-      firstPhoneValue.length <= 0 ? console.log("휴대전화 가입 오류") : await fetch(`${signUpUrl}`, {
+    if (firstPhoneValue.length <= 0) {
+      console.log('휴대전화 가입 오류');
+      return;
+    }
+    try {
+      const res = await fetch(`${userUrl}/signUp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,15 +109,17 @@ export function SignUp() {
           isCertificated: true,
           deletedAt: '',
         }),
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-      nav('/login');;
+      });
+      const data = await res.json();
+      if (res.ok) {
+        nav('/login');
+      } else {
+        console.log(data);
+      }
+    } catch (e) {
+      console.log('fetch error: ', e);
     }
-    catch(err){
-      alert("회원가입에 실패하였습니다.");
-    }
-  }
+  };
 
   // 휴대폰 번호 나누는 로직
   // 백엔드에서 나눠서 받으므로 입력받은 데이터 나눠서 보냄
@@ -128,14 +127,14 @@ export function SignUp() {
     splitPhoneValue = phoneValue?.substring(3) || '00000000000';
     firstPhoneValue = splitPhoneValue?.substring(0, 4);
     secondPhoneValue = splitPhoneValue?.substring(4);
-  }
+  };
 
   // 초기화 로직
   const initializeValue = () => {
     splitPhoneValue = '';
     firstPhoneValue = '';
     secondPhoneValue = '';
-  }
+  };
 
   // 회원가입 API 연동 로직
   const handleCheckFormData = () => {
@@ -172,7 +171,7 @@ export function SignUp() {
             onChange={(event) => setIdValue(event.target.value)}
             placeholder="아이디를 작성해주세요"
             sx={{ width: '60%', margin: '10% 0 5% 0' }}
-          />          
+          />
         </ButtonDiv>
 
         <TextField
@@ -183,11 +182,12 @@ export function SignUp() {
           label="비밀번호"
           type="password"
           placeholder="비밀번호를 작성해주세요"
-          helperText={<div>
-            * 비밀번호는 최소 8자 이상이어야 합니다.
-            <br />
-            * 알파벳(대,소문자 모두), 숫자, 특수 문자를 포함해야 합니다.
-          </div>}
+          helperText={
+            <div>
+              * 비밀번호는 최소 8자 이상이어야 합니다.
+              <br />* 알파벳(대,소문자 모두), 숫자, 특수 문자를 포함해야 합니다.
+            </div>
+          }
           sx={{ width: '60%', margin: '0 0 5% 0' }}
         />
 
@@ -268,15 +268,7 @@ export function SignUp() {
         </ButtonDiv>
 
         <Agreement>
-          <FormControlLabel
-            label="모두동의"
-            control={
-              <Checkbox
-                checked={checked[0] && checked[1]}
-                onChange={handleChange1}
-              />
-            }
-          />
+          <FormControlLabel label="모두동의" control={<Checkbox checked={checked[0] && checked[1]} onChange={handleChange1} />} />
           {children}
         </Agreement>
 

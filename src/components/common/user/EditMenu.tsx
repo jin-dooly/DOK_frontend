@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import * as styled from './EditMenu.styled';
 import { MoreVert } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from 'store/store';
-import { setMatchingPostEditId, setOpenDeleteAlert, setOpenEditAlert } from 'store/index';
+import { setMatchingPostEditId, setOpenDeleteAlert, setOpenEditAlert, AppDispatch } from 'store/index';
 import { matchingPostDetailUrl } from 'api/apiUrls';
 import { useNavigate } from 'react-router-dom';
 import { MatchingPostType } from 'src/types';
+import { IconBox } from './EditMenu.styled';
 
 interface EditMenuProps {
   post: MatchingPostType;
@@ -15,7 +14,7 @@ interface EditMenuProps {
 
 export function EditMenu({ post, size }: EditMenuProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleClickEditIcon = (e: React.MouseEvent) => {
@@ -61,16 +60,14 @@ export function EditMenu({ post, size }: EditMenuProps) {
   };
 
   return (
-    <>
-      <styled.IconBox className={size && 'small'} onClick={handleClickEditIcon} onMouseLeave={handleClose}>
-        <MoreVert className="icon pointer" onClick={handleOpen} />
-        {open && (
-          <ul className="menu pointer">
-            <li onClick={handleClickEditButton}>수정하기</li>
-            {handleClickRemoveButton && <li onClick={handleClickRemoveButton}>삭제하기</li>}
-          </ul>
-        )}
-      </styled.IconBox>
-    </>
+    <IconBox className={size && 'small'} onClick={handleClickEditIcon} onMouseLeave={handleClose}>
+      <MoreVert className="icon pointer" onClick={handleOpen} />
+      {open && (
+        <ul className="menu pointer">
+          <li onClick={handleClickEditButton}>수정하기</li>
+          {handleClickRemoveButton && <li onClick={handleClickRemoveButton}>삭제하기</li>}
+        </ul>
+      )}
+    </IconBox>
   );
 }

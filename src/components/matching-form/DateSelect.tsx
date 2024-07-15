@@ -4,7 +4,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import dayjs, { Dayjs } from 'dayjs';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setDateSelect, setErrorDateSelect } from '../../store';
+import { AppDispatch, RootState, setDateSelect, setErrorDateSelect } from 'store/index';
 import { FormLabel } from '@mui/material';
 import { Event } from '@mui/icons-material';
 

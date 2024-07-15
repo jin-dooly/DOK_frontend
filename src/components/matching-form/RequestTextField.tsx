@@ -1,6 +1,6 @@
 import { FormLabel, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setErrorRequestText, setRequestText } from '../../store';
+import { AppDispatch, RootState, setErrorRequestText, setRequestText } from 'store/index';
 import { ChatOutlined } from '@mui/icons-material';
 import { useEffect } from 'react';
 

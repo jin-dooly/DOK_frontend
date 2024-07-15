@@ -27,7 +27,7 @@ export function MainSection3() {
         <Contents onClick={handleClick}>{Children.toArray(certificationPosts.map((data, index) => <CertifiPostCard index={index} onClick={() => {}} contents={data} />))}</Contents>
       </InnerBox>
       <img src={`https://capsule-render.vercel.app/api?type=waving&color=4194CB&height=${window.innerWidth}&section=footer`} />
-      <BackgroundBox></BackgroundBox>
+      <BackgroundBox />
     </Section>
   );
 }

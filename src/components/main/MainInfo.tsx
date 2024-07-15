@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import mainTopImage from '/svg/main_header_image.svg';
 import logoImage from '/dok_logo.png';
-import { Pets } from '@mui/icons-material';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Pets, KeyboardArrowRight } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
@@ -14,9 +13,9 @@ const easeOutExpo = (t: number) => {
 
 export function MainInfo() {
   const { matchingPostCount } = useSelector((state: RootState) => state.main);
-  const [count, setCount] = useState(0);
-  const frameRate = 1000 / 60;
-  const totalFrame = Math.round(2000 / frameRate);
+  const [count, setCount] = useState<number>(0);
+  const frameRate: number = 1000 / 60;
+  const totalFrame: number = Math.round(2000 / frameRate);
 
   useEffect(() => {
     if (matchingPostCount) {
@@ -57,14 +56,14 @@ export function MainInfo() {
               <button className="pointer">
                 <Pets className="pet" />
                 <span>핸들러 구하러 가기</span>
-                <KeyboardArrowRightIcon />
+                <KeyboardArrowRight />
               </button>
             </Link>
             <Link to={'/certification'} className="link">
               <button className="pointer">
                 <Pets className="pet" />
                 <span>산책 인증 보러 가기</span>
-                <KeyboardArrowRightIcon />
+                <KeyboardArrowRight />
               </button>
             </Link>
           </div>

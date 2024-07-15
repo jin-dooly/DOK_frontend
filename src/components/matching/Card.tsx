@@ -1,5 +1,5 @@
 import { LocationOn, AccessTime } from '@mui/icons-material';
-import { CardContainer } from '../certification/PostCard.styled';
+import { Card, CardContainer } from '../certification/PostCard.styled';
 import { MatchingPostType } from '../../types';
 import { ProfileInfo } from 'common/user/ProfileInfo';
 import durationTimeFormat from '../../utils/durationTimeFormat';
@@ -8,7 +8,6 @@ import { EditMenu } from 'common/user/EditMenu';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from 'store/index';
-import React from 'react';
 import { WalkInfo, DogIcon, MatchingStatusImage } from './Card.style';
 
 interface MatchingCardProps {
@@ -26,7 +25,7 @@ export function MatchingCard({ post }: MatchingCardProps) {
   };
 
   return (
-    <CardContainer className={`pointer ${matchingStatus !== 'process' && 'ended'}`} onClick={handleToDetail}>
+    <CardContainer to={`/matching/${_id}`} className={`pointer ${matchingStatus !== 'process' && 'ended'}`}>
       <ProfileInfo _id={user._id} nickname={user.nickname} userImg={user.userImg} time={createdAt} size="small" />
       {_user._id === user._id && matchingStatus === 'process' && <EditMenu size="small" post={post} />}
       <img src={userDog.dogImg} className="main-img" />

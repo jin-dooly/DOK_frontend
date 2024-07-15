@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, setMatchingComments } from 'store/index';
 import { Children, useEffect } from 'react';
 import { CommentContainer } from './CommentContainer';
-import { matchingPostDetailUrl } from '../../api/apiUrls';
+import { matchingPostDetailUrl } from 'api/apiUrls';
 import { CommentLayout, NoCommentContainer } from './CommentList.style';
 
 export function CommentList() {
@@ -18,6 +18,8 @@ export function CommentList() {
         const data = await res.json();
         if (res.ok) {
           dispatch(setMatchingComments(data.reverse()));
+        } else {
+          console.log(data);
         }
       } catch (err) {
         console.log('fetch error: ' + err);

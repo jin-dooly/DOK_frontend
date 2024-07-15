@@ -11,7 +11,7 @@ export function MatchingBookmark() {
   const { user } = useSelector((state: RootState) => state.user);
   const { matchingBookmark } = useSelector((state: RootState) => state.matching) as any;
   const dispatch = useDispatch<AppDispatch>();
-  const [openBox, setOpenBox] = useState(false);
+  const [openBox, setOpenBox] = useState<boolean>(false);
 
   // 작성한 매칭글 API 연동
   const getUserMachingList = async () => {

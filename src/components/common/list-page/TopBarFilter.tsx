@@ -1,4 +1,4 @@
-import * as styled from './TopBarFilter.styled';
+import { DateSection, Section } from './TopBarFilter.styled';
 import {
   Box,
   Button,
@@ -29,15 +29,15 @@ import { resetMatchingPosts, resetCertificationPosts, setCertificationPostsCount
 
 export function TopBarFilter() {
   const dispatch = useDispatch<AppDispatch>();
-  const [districtCode, setDistrictCode] = useState('');
-  const [district, setDistrict] = useState('');
+  const [districtCode, setDistrictCode] = useState<string>('');
+  const [district, setDistrict] = useState<string>('');
 
   const [sido, setSido] = useState<keyof typeof beobjeongdong.sigugun | ''>('');
   const [sigugun, setSigugun] = useState<keyof typeof beobjeongdong.dong | '' | 'all'>('');
-  const [dong, setDong] = useState('');
+  const [dong, setDong] = useState<string>('');
 
   const [date, setDate] = useState<Dayjs | null>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleChangeSido = (event: SelectChangeEvent) => {
     const value = event.target.value;
@@ -99,7 +99,7 @@ export function TopBarFilter() {
   }, []);
 
   return (
-    <styled.Section>
+    <Section>
       <TextField className="district" fullWidth id="outlined-required" label="지역 검색" onClick={handleClickOpen} value={district} InputProps={{ readOnly: true }} size="small" />
       <Dialog disableEscapeKeyDown open={open}>
         <DialogTitle>검색할 지역을 선택해주세요</DialogTitle>
@@ -191,7 +191,7 @@ export function TopBarFilter() {
         </DialogActions>
       </Dialog>
 
-      <styled.DateSection>
+      <DateSection>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DatePicker']} sx={{ width: '200px' }}>
             <DesktopDatePicker
@@ -209,9 +209,9 @@ export function TopBarFilter() {
             <Clear />
           </IconButton>
         )}
-      </styled.DateSection>
+      </DateSection>
 
       <SearchButton onClick={handleSearchButtonClick} />
-    </styled.Section>
+    </Section>
   );
 }

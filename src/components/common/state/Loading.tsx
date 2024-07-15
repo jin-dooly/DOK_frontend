@@ -1,10 +1,10 @@
-import * as styled from './States.styled';
+import { LoadingLayout } from './States.styled';
 import { CircularProgress } from '@mui/material';
 
 export function Loading() {
   return (
-    <styled.Loading>
+    <LoadingLayout>
       <CircularProgress />
-    </styled.Loading>
+    </LoadingLayout>
   );
 }

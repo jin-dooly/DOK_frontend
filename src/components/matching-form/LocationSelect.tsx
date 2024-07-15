@@ -1,4 +1,3 @@
-import * as styled from './LocationSelect.styled';
 import { Button, Dialog, DialogActions, FormLabel, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
@@ -6,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, setLocation, setLocationDetail } from 'store/index';
 import { LocationOn } from '@mui/icons-material';
 import { SearchButton } from 'common/button/SearchButton';
+import { DialogContentBox, DialogTitleBox, LocationLayout } from './LocationSelect.styled';
 
 const geocoder = new kakao.maps.services.Geocoder();
 
@@ -95,7 +95,7 @@ export function LocationSelect({ editLocation }: LocationSelectProps) {
   }, [user]);
 
   return (
-    <styled.LocationLayout>
+    <LocationLayout>
       <FormLabel component="legend">
         <LocationOn className="icon" />
         만남 위치
@@ -115,8 +115,8 @@ export function LocationSelect({ editLocation }: LocationSelectProps) {
       />
 
       <Dialog disableEscapeKeyDown open={mapOpen} onClose={handleClose} maxWidth={false}>
-        <styled.DialogTitleBox>만남 장소를 선택해주세요</styled.DialogTitleBox>
-        <styled.DialogContentBox dividers>
+        <DialogTitleBox>만남 장소를 선택해주세요</DialogTitleBox>
+        <DialogContentBox dividers>
           <div className="location-text">
             <LocationOn className="icon" color="primary" />
             <span>{locationText}</span>
@@ -158,8 +158,8 @@ export function LocationSelect({ editLocation }: LocationSelectProps) {
               확인
             </Button>
           </DialogActions>
-        </styled.DialogContentBox>
+        </DialogContentBox>
       </Dialog>
-    </styled.LocationLayout>
+    </LocationLayout>
   );
 }

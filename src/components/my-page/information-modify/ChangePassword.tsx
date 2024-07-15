@@ -4,17 +4,17 @@ import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenErrorModifyIn
 import { ButtonMain } from 'common/button/ButtonMain';
 import TextField from '@mui/material/TextField';
 import { ButtonContainer, ChangePasswordContainer } from './ChangePassword.style';
-import { myPasswordUrl } from '../../../api/apiUrls';
+import { userUrl } from 'api/apiUrls';
 
 export function ChangePassword() {
   const dispatch = useDispatch<AppDispatch>();
   const { checkModifyInfoIsValid } = useSelector((state: RootState) => state.user);
-  const [password, setPassword] = useState({
+  const [password, setPassword] = useState<{ currentPassword: string; newPassword: string; confirmNewPassword: string }>({
     currentPassword: '',
     newPassword: '',
     confirmNewPassword: '',
   });
-  const [isValid, setIsValid] = useState({
+  const [isValid, setIsValid] = useState<{ currentPassword: boolean; newPassword: boolean; confirmNewPassword: boolean }>({
     currentPassword: true,
     newPassword: true,
     confirmNewPassword: true,
@@ -63,7 +63,7 @@ export function ChangePassword() {
   //비밀번호 변경 요청
   const changeUserPassword = async () => {
     try {
-      const res = await fetch(`${myPasswordUrl}`, {
+      const res = await fetch(`${userUrl}/myPassword`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -81,9 +81,7 @@ export function ChangePassword() {
       if (res.ok) {
         dispatch(setOpenSuccessModifyInfoSnackbar({ isOpen: true, type: 'password' }));
         window.location.reload();
-      }
-
-      if (res.status === 401 || res.status === 404 || res.status == 400) {
+      } else {
         dispatch(setOpenErrorModifyInfoAlert({ isOpen: true, type: 'password' }));
       }
     } catch (err) {

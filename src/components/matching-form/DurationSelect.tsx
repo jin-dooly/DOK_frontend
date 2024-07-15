@@ -1,6 +1,6 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setDurationSelect, setPaySelect } from '../../store';
+import { AppDispatch, RootState, setDurationSelect, setPaySelect } from 'store/index';
 import { AccessTime } from '@mui/icons-material';
 import { useEffect } from 'react';
 

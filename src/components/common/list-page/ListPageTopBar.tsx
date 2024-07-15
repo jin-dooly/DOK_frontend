@@ -1,4 +1,4 @@
-import * as styled from './ListPageTopBar.styled';
+import { Section } from './ListPageTopBar.styled';
 import { TopBarTitle } from './TopBarTitle';
 import { TopBarFilter } from './TopBarFilter';
 
@@ -9,9 +9,9 @@ interface ListPageTopBarProps {
 
 export function ListPageTopBar({ yellow, black }: ListPageTopBarProps) {
   return (
-    <styled.Section>
+    <Section>
       <TopBarTitle yellow={yellow} black={black} />
       <TopBarFilter />
-    </styled.Section>
+    </Section>
   );
 }

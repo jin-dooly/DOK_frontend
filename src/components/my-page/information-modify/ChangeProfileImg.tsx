@@ -34,24 +34,27 @@ export const ChangeProfileImg = () => {
       const formData = new FormData();
       formData.append('image', file);
 
-      await fetch('/api/upload/image', {
-        method: 'POST',
-        body: formData,
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch(setSelectedImg(data[0]));
-        })
-        .catch((error) => {
-          // 에러 처리
-          console.error('이미지 업로드 에러:', error);
+      try {
+        const res = await fetch('/api/upload/image', {
+          method: 'POST',
+          body: formData,
+          credentials: 'include',
         });
+        const data = await res.json();
+
+        if (res.ok) {
+          dispatch(setSelectedImg(data[0]));
+        } else {
+          console.log(data);
+        }
+      } catch (error) {
+        console.error('이미지 업로드 에러:', error);
+      }
     }
   };
 
   return (
-    <div>
+    <>
       <input type="file" accept="image/*" onChange={(event) => handleImageUpload(event)} style={{ display: 'none' }} ref={inputRef} id="imageInput" />
       <ImgContainer className="pointer" onClick={handleImageClick} id="selectedImage">
         <img src={imagePath} className="user-img" />
@@ -60,7 +63,6 @@ export const ChangeProfileImg = () => {
           <ModeIcon sx={{ fontSize: '35px', color: 'white' }} />
         </EditIcon>
       </ImgContainer>
-    </div>
+    </>
   );
 };
-

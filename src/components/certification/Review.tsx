@@ -1,9 +1,9 @@
-import * as styled from './Review.styled';
 import { Edit } from '@mui/icons-material';
 import { IconButton, Rating } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/index';
 import userImage from '/svg/user_image1.svg';
+import { ReviewBox } from './Review.styled';
 
 interface ReviewProps {
   isEditable: boolean;
@@ -20,7 +20,7 @@ export function Review({ isEditable, setIsEditing }: ReviewProps) {
   };
 
   return (
-    <styled.ReviewBox>
+    <ReviewBox>
       <div className="top">
         <div className="label">견주의 후기</div>
         <div className="left">
@@ -37,6 +37,6 @@ export function Review({ isEditable, setIsEditing }: ReviewProps) {
         )}
       </div>
       <div>{review.reviewText}</div>
-    </styled.ReviewBox>
+    </ReviewBox>
   );
 }

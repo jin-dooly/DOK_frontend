@@ -1,6 +1,15 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
+export const Card = styled.div`
+  position: relative;
+  transition: transform 0.3s ease-in-out 0s;
+  &:hover {
+    transform: translate(0px, -5px);
+  }
+`;
+
+export const CardContainer = styled(Link)`
   width: 100em;
   max-width: 250px;
   height: fit-content;
@@ -13,9 +22,7 @@ export const CardContainer = styled.div`
   box-shadow: 1.5px 1.5px 6px rgba(0, 0, 0, 0.25);
   position: relative;
   box-sizing: border-box;
-  transition:
-    box-shadow 0.3s ease-in-out 0s,
-    transform 0.3s ease-in-out 0s;
+  transition: box-shadow 0.3s ease-in-out 0s;
 
   .main-img {
     width: 100%;
@@ -36,7 +43,6 @@ export const CardContainer = styled.div`
     max-width: 29vw;
   }
   &:hover {
-    transform: translate(0px, -5px);
     box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 12px;
   }
 `;

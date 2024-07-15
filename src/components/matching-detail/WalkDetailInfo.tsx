@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import dateTimeFormat from '../../utils/dateTimeFormat';
 import durationTimeFormat from '../../utils/durationTimeFormat';
 import calculateWalkingTime from '../../utils/calculateWalkingTime';
-import { matchingPostDetailUrl } from '../../api/apiUrls';
+import { matchingPostDetailUrl } from 'api/apiUrls';
 import { HandlerContainer, MapLayout, TextAlignLayout, WalkDetailLayout, WalkInfoBox, WalkInfoItem } from './WalkDetailInfo.style';
 
 export function WalkDetailInfo() {
@@ -28,11 +28,14 @@ export function WalkDetailInfo() {
 
         if (res.ok) {
           dispatch(setRequestHandlers(data));
+        } else {
+          console.log(data);
         }
       } catch (error) {
         console.log('fetch error: ' + error);
       }
     };
+
     RequestHandlerList();
   }, [isAuthor, matchingDetailPost]);
 
@@ -62,7 +65,7 @@ export function WalkDetailInfo() {
                 <span>만남 장소</span>
                 <div>
                   <p>{`${location?.text}`}</p>
-                  {locationDetail && <p className='sub-info'>({locationDetail})</p>}
+                  {locationDetail && <p className="sub-info">({locationDetail})</p>}
                 </div>
               </TextAlignLayout>
             </TextAlignLayout>

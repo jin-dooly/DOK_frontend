@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { styled } from "styled-components";
+import { useState, useEffect } from 'react';
+import { TopButton } from './ScrollToTopButton.styled';
 
 export function ScrollToTopButton() {
   const [showButton, setShowButton] = useState(false);
@@ -7,7 +7,7 @@ export function ScrollToTopButton() {
   const scrollToTop = () => {
     window.scroll({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -20,22 +20,11 @@ export function ScrollToTopButton() {
       }
     };
 
-    window.addEventListener("scroll", handleShowButton);
+    window.addEventListener('scroll', handleShowButton);
     return () => {
-      window.removeEventListener("scroll", handleShowButton);
+      window.removeEventListener('scroll', handleShowButton);
     };
   }, []);
 
   return showButton && <TopButton className="pointer" src="/svg/top_button.svg" onClick={scrollToTop} />;
 }
-
-const TopButton = styled.img`
-  position: fixed;
-  bottom: 70px;
-  right: 40px;
-  width: 48px;
-
-  &.hidden {
-    display: none;
-  }
-`;

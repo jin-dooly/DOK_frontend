@@ -1,20 +1,24 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setCheckModifyInfoIsValid } from 'store/index';
+import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar, setOpenErrorModifyInfoAlert } from 'store/index';
 import DaumPostcode from 'react-daum-postcode';
 import { ChangeProfileImg } from './ChangeProfileImg';
 import { ButtonMain } from 'common/button/ButtonMain';
-import { myInfoUrl } from '../../../api/apiUrls';
+import { userUrl } from 'api/apiUrls';
 import { AddressLayout, ButtonContainer, ModifyInfoContainer } from './ModifyInfo.style';
-import { setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar, setOpenErrorModifyInfoAlert } from 'store/alertSlice';
 import { Box, Button, TextField, Modal } from '@mui/material';
-
 
 export function ModifyInfo() {
   const dispatch = useDispatch<AppDispatch>();
   const { user, selectedImg, checkModifyInfoIsValid } = useSelector((state: RootState) => state.user);
   const [isOpenSearchAddress, setIsOpenSearchAddress] = useState<boolean>(false);
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<{
+    id: string;
+    name: string;
+    nickname: string;
+    address: { text: string; code: string };
+    phoneNumber: string;
+  }>({
     id: user.userId,
     name: user.name,
     nickname: user.nickname,
@@ -58,7 +62,7 @@ export function ModifyInfo() {
   //정보 수정 요청
   const modifyUserInfo = async () => {
     try {
-      const res = await fetch(`${myInfoUrl}`, {
+      const res = await fetch(`${userUrl}/myInfo`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -78,6 +82,9 @@ export function ModifyInfo() {
       if (res.ok) {
         dispatch(setOpenSuccessModifyInfoSnackbar({ isOpen: true, type: 'info' }));
         window.location.reload();
+      } else {
+        const data = await res.json();
+        console.log(data);
       }
     } catch (err) {
       console.log('fetch error: ' + err);
@@ -139,21 +146,21 @@ export function ModifyInfo() {
           주소검색
         </Button>
         <Modal open={isOpenSearchAddress} onClose={() => setIsOpenSearchAddress(false)}>
-            <Box
-              sx={{
-                position: 'absolute' as 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: 700,
-                bgcolor: 'background.paper',
-                boxShadow: 24,
-                p: 4,
-              }}
-            >
-              <DaumPostcode onComplete={handleSelectAddress} />
-            </Box>
-          </Modal>
+          <Box
+            sx={{
+              position: 'absolute' as 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 700,
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <DaumPostcode onComplete={handleSelectAddress} />
+          </Box>
+        </Modal>
       </AddressLayout>
       <TextField
         label="전화번호"

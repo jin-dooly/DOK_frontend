@@ -5,7 +5,7 @@ import { Send } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState, setOpenAlertLogin, addMatchingComment, updateMatchingComment } from 'store/index';
 import { useState } from 'react';
-import { matchingPostDetailUrl } from '../../api/apiUrls';
+import { matchingPostDetailUrl } from 'api/apiUrls';
 import { AlertLogin } from 'common/alert/AlertLogin';
 
 interface CommentProps {

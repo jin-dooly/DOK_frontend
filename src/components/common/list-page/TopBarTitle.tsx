@@ -1,4 +1,4 @@
-import * as styled from './TopBarTitle.styled';
+import { Section } from './TopBarTitle.styled';
 
 interface TopBarTitleProps {
   yellow?: string;
@@ -7,9 +7,9 @@ interface TopBarTitleProps {
 
 export function TopBarTitle({ yellow, black }: TopBarTitleProps) {
   return (
-    <styled.Section>
+    <Section>
       <span className="point">{yellow}</span>
       <span className="text">{black}</span>
-    </styled.Section>
+    </Section>
   );
 }

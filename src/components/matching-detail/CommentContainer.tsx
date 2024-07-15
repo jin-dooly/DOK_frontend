@@ -13,12 +13,11 @@ export function CommentContainer({ comment }: type) {
   const { matchingComments } = useSelector((state: RootState) => state.matching);
 
   return (
-    <div>
+    <>
       <CommentItem comment={comment} />
       <ReplyContainer>
         {Children.toArray(matchingComments.filter((reply) => comment._id === reply.parentCommentId).map((reply) => <CommentItem comment={reply} commentType="reply" />))}
       </ReplyContainer>
-    </div>
+    </>
   );
 }
-
