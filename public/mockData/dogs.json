@@ -1,0 +1,61 @@
+[
+  {
+    "_id": "65695ed473dec49636cf2528",
+    "user": "6568542b4617a781992641d9",
+    "dogName": "디셈버",
+    "dogImg": "https://i.pinimg.com/564x/ac/34/ce/ac34ceb5a851590ebb1e1e4f79ed1310.jpg",
+    "birth": "01/04/2024",
+    "dogType": "말티즈",
+    "gender": "Male",
+    "personality": "매우 활발",
+    "deletedAt": null,
+    "createdAt": "2023-12-01T04:19:32.489Z",
+    "updatedAt": "2023-12-01T04:19:32.489Z",
+    "__v": 0
+  },
+  {
+    "_id": "6569f271aab8005b4a817412",
+    "user": "6568542b4617a781992641d9",
+    "dogName": "Jan",
+    "dogImg": "https://mblogthumb-phinf.pstatic.net/20141217_12/ilbgs_141878084647178nT5_JPEG/499aa6bcf0053bd14eb6f1ae0e305a95.jpg?type=w800",
+    "birth": "01/04/2024",
+    "dogType": "시바견",
+    "gender": "Male",
+    "personality": "매우 활발",
+    "note": "토종시바에여",
+    "deletedAt": null,
+    "createdAt": "2023-12-01T14:49:21.944Z",
+    "updatedAt": "2023-12-01T14:49:21.944Z",
+    "__v": 0
+  },
+  {
+    "_id": "656a7c1c56903ead922446ae",
+    "user": "6568542b4617a781992641d9",
+    "dogName": "순돌이",
+    "dogImg": "https://dokawsbucket.s3.ap-northeast-2.amazonaws.com/789e3748c354b0c4fd53aadd3dfdda4b.jpg",
+    "birth": "2020-01-23",
+    "dogType": "불독",
+    "gender": "male",
+    "personality": "calm",
+    "note": "엄청 귀엽죠? 데려가고 싶죠? 미치겠죠?",
+    "deletedAt": null,
+    "createdAt": "2023-12-02T00:36:44.758Z",
+    "updatedAt": "2023-12-02T00:36:44.758Z",
+    "__v": 0
+  },
+  {
+    "_id": "65a8babeca0fab977649690d",
+    "user": "65a8b66aca0fab9776496909",
+    "dogName": "디에잇",
+    "dogImg": "https://dokawsbucket.s3.ap-northeast-2.amazonaws.c…88%C2%88%C3%AC%C2%A7%C2%B1%C3%AA%C2%B5%C2%AC.jpeg",
+    "birth": "01/04/2024",
+    "dogType": "코카스파니엘",
+    "gender": "Male",
+    "personality": "매우 활발한 편입니다",
+    "note": "딱히 적을게 없음",
+    "deletedAt": null,
+    "createdAt": "2024-01-18T05:44:30.152Z",
+    "updatedAt": "2024-01-18T05:44:30.152Z",
+    "__v": 0
+  }
+]

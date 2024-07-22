@@ -6,9 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './AppRoutes';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import { server } from 'api/mocks/browser';
-
-server.listen();
 
 function App() {
   return (

@@ -1,63 +1,135 @@
-import { HttpResponse, StrictRequest, delay, http } from 'msw';
+import { HttpResponse, PathParams, StrictRequest, delay, http } from 'msw';
 import { userUrl as root } from '../../apiUrls';
+import { DogType, initUserType, UserType } from 'src/types';
+import dayjs from 'dayjs';
 
-type userType = {
-  _id: string;
-  name: string;
+type filteredUserType = Omit<UserType, 'name' | 'phoneNumber' | 'userId' | 'password' | 'createdAt' | 'updatedAt' | 'deletedAt' | '__v'>;
+type filteredDogType = Omit<DogType, 'user' | 'createdAt' | 'updatedAt' | 'deletedAt' | '__v'>;
+type userParamsType = { id: string };
+
+const userDataFiltering = (data: UserType | UserType[]): filteredUserType | filteredUserType[] => {
+  if (Array.isArray(data)) {
+    return data.map(({ name, phoneNumber, userId, password, createdAt, updatedAt, deletedAt, __v, ...filtered }: UserType) => filtered);
+  }
+  const { name, phoneNumber, userId, password, createdAt, updatedAt, deletedAt, __v, ...filtered } = data;
+  return filtered;
+};
+
+const dogDataFiltering = (data: DogType | DogType[]): filteredDogType | filteredDogType[] => {
+  if (Array.isArray(data)) {
+    return data.map(({ user, createdAt, updatedAt, deletedAt, __v, ...filtered }: DogType) => filtered);
+  }
+  const { user, createdAt, updatedAt, deletedAt, __v, ...filtered } = data;
+  return filtered;
 };
 
 export const userHandlers = [
-  http.get(`${root}/profile/:id`, async ({ params }) => {
+  http.get<userParamsType>(`${root}/:id/profile`, async ({ params }) => {
     await delay(500);
 
-    const res = await fetch('../data/users.json');
+    let res = await fetch('mockData/users.json');
     const users = await res.json();
+    const foundUser = users.filter(({ _id, deletedAt }: UserType) => _id === params.id && !deletedAt)[0];
+    if (!foundUser) {
+      return HttpResponse.json({ status: 400 });
+    }
+    const user = userDataFiltering(foundUser);
 
-    const foundUser = users.filter(({ _id }: userType) => _id === params.id);
+    res = await fetch('mockData/dogs.json');
+    const dogs = await res.json();
+    const foundDogs = dogs.filter(({ user, deletedAt }: DogType) => user === params.id && !deletedAt);
+    const userDogs = dogDataFiltering(foundDogs);
 
+    return HttpResponse.json({
+      data: {
+        user,
+        userDogs,
+        rating: [4, 1],
+      },
+    });
+  }),
+
+  http.get<userParamsType>(`${root}/:id`, async ({ params, cookies }) => {
+    await delay(500);
+
+    if (!cookies.token) {
+      return HttpResponse.json({ error: 'Not Authorized' }, { status: 401 });
+    }
+
+    let res = await fetch('mockData/users.json');
+    const users = await res.json();
+    const foundUser = users.filter(({ _id, deletedAt }: UserType) => _id === params.id && !deletedAt)[0];
     if (!foundUser) {
       return HttpResponse.json({ status: 400 });
     }
 
-    return HttpResponse.json({
-      data: {
-        user: foundUser,
-        rating: [5, 1],
-        userDogs: [
-          {
-            _id: '65695ed473dec49636cf2528',
-            dogName: '디셈버',
-            dogImg: 'https://i.pinimg.com/564x/ac/34/ce/ac34ceb5a851590ebb1e1e4f79ed1310.jpg',
-            birth: '01/04/2024',
-            dogType: '말티즈',
-            gender: 'Male',
-            personality: '매우 활발',
-            __v: 0,
-          },
-          {
-            _id: '6569f271aab8005b4a817412',
-            dogName: 'Jan',
-            dogImg: 'https://mblogthumb-phinf.pstatic.net/20141217_12/ilbgs_141878084647178nT5_JPEG/499aa6bcf0053bd14eb6f1ae0e305a95.jpg?type=w800',
-            birth: '01/04/2024',
-            dogType: '시바견',
-            gender: 'Male',
-            personality: '매우 활발',
-            note: '토종시바에여',
-            __v: 0,
-          },
-          {
-            _id: '656a7c1c56903ead922446ae',
-            dogName: '순돌이',
-            dogImg: 'https://dokawsbucket.s3.ap-northeast-2.amazonaws.com/789e3748c354b0c4fd53aadd3dfdda4b.jpg',
-            birth: '2020-01-23',
-            dogType: '불독',
-            gender: 'male',
-            personality: 'calm',
-            note: '엄청 귀엽죠? 데려가고 싶죠? 미치겠죠?',
-            __v: 0,
-          },
-        ],
-      },
-    });
+    const { password, ...user } = foundUser;
+    return HttpResponse.json({ data: { user } });
+  }),
+
+  http.post<PathParams, UserType>(`${root}`, async ({ cookies, request }) => {
+    await delay(500);
+
+    if (!cookies.token) {
+      return HttpResponse.json({ error: 'Not Authorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { userId, password, name, nickname, address, phoneNumber } = body;
+    if (!(userId && password && name && nickname && address && phoneNumber)) {
+      return HttpResponse.json({ error: 'Not Found' }, { status: 404 });
+    }
+
+    const newUser = { ...initUserType, ...body, createdAt: dayjs() };
+
+    return HttpResponse.json({ data: { user: newUser } });
+  }),
+
+  http.patch<userParamsType, UserType>(`${root}/:id`, async ({ params, cookies, request }) => {
+    await delay(500);
+
+    if (!cookies.token) {
+      return HttpResponse.json({ error: 'Not Authorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    let res = await fetch('mockData/users.json');
+    const users = await res.json();
+    const foundUser = users.filter(({ _id, deletedAt }: UserType) => _id === params.id && !deletedAt)[0];
+    if (!body || !foundUser) {
+      return HttpResponse.json({ error: 'Not Found' }, { status: 404 });
+    }
+
+    const newUser = { ...foundUser, ...body, updatedAt: dayjs() };
+
+    return HttpResponse.json({ data: { user: newUser } });
+  }),
+
+  http.delete<userParamsType, UserType>(`${root}/:id`, async ({ params, cookies }) => {
+    await delay(500);
+
+    if (!cookies.token) {
+      return HttpResponse.json({ error: 'Not Authorized' }, { status: 401 });
+    }
+
+    let res = await fetch('mockData/users.json');
+    const users = await res.json();
+    const foundUser = users.filter(({ _id, deletedAt }: UserType) => _id === params.id && !deletedAt)[0];
+    if (!foundUser) {
+      return HttpResponse.json({ error: 'Not Found' }, { status: 404 });
+    }
+
+    return HttpResponse.json({ status: 204 });
+  }),
+
+  http.get<userParamsType>(`${root}/:id/dogs`, async ({ params }) => {
+    await delay(500);
+
+    const res = await fetch('mockData/dogs.json');
+    const dogs = await res.json();
+    const foundDogs = dogs.filter(({ user, deletedAt }: DogType) => user === params.id && !deletedAt);
+    const userDogs = dogDataFiltering(foundDogs);
+
+    return HttpResponse.json({ data: { userDogs } });
   }),
 ];

@@ -18,5 +18,25 @@
     "updatedAt": "2023-12-02T01:24:59.228Z",
     "__v": 0,
     "userImg": "https://images-ext-2.discordapp.net/external/568eJuQwjap5eF0cpcK6nwv9qY7Fk4-hjd3lDWa1Rxo/https/pbs.twimg.com/media/F8fWq4PasAAW7Xu.jpg?format=webp&width=832&height=1108"
+  },
+  {
+    "_id": "65a8b66aca0fab9776496909",
+    "userId": "newTest0118",
+    "password": "$2b$10$xdjvyAODx4d0.OaqSZ3qMuHMaN7tqxwAqqHnTzJzj0bvdleIzgzQ.",
+    "name": "일일팔님",
+    "nickname": "일일팔이세요",
+    "address": {
+      "text": "광주광역시 광산구 하남대로 12",
+      "code": "21001244",
+      "_id": "65a8bc3d8dd2d68d6109cac7"
+    },
+    "phoneNumber": "2024 0118",
+    "introduce": "수정된 소개글입니다",
+    "isCertificated": false,
+    "userImg": "https://newImg",
+    "deletedAt": null,
+    "createdAt": "2024-01-18T05:26:02.763Z",
+    "updatedAt": "2024-01-18T06:50:01.161Z",
+    "__v": 0
   }
 ]

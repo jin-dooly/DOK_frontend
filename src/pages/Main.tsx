@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch, setMainCertificationPosts, setMainMatchingPosts, setMainDogs, setMainMatchingPostCount } from 'store/index';
 import { PageLayout } from '../styles/PageDefault.styled';
 import { LoadingPage } from 'common/state/LoadingPage';
-import { mainUrl } from 'api/apiUrls';
+import { mainUrl, userUrl } from 'api/apiUrls';
 
 export function MainPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,6 +16,10 @@ export function MainPage() {
   useEffect(() => {
     (async () => {
       try {
+        fetch(`${userUrl}/6568542b4617a781992641d9/profile`)
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+
         const res = await fetch(mainUrl);
         const data = await res.json();
 
