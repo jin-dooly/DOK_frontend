@@ -7,11 +7,12 @@ export interface UserType {
   address: { text: string; code: string };
   phoneNumber: string;
   introduce: string;
-  userImg: string;
+  profileImg: string;
   isCertificated: boolean;
   deletedAt: null | Date | string;
   createdAt: Date | string;
   updatedAt: Date | string;
+  __v: number;
 }
 
 export const initUserType: UserType = {
@@ -22,10 +23,11 @@ export const initUserType: UserType = {
   nickname: '',
   address: { text: '', code: '' },
   phoneNumber: '',
-  userImg: '',
+  profileImg: '',
   introduce: '',
   isCertificated: false,
   deletedAt: null,
   createdAt: '',
   updatedAt: '',
+  __v: 0,
 };
