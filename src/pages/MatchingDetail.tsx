@@ -1,14 +1,14 @@
-import { DogProfile } from '../components/matching-detail/DogProfile';
-import { WalkDetailInfo } from '../components/matching-detail/WalkDetailInfo';
-import { CommentList } from '../components/matching-detail/CommentList';
-import { StatusBanner } from '../components/matching-detail/StatusBanner';
+import { DogProfile } from '@components/matching-detail/DogProfile';
+import { WalkDetailInfo } from '@components/matching-detail/WalkDetailInfo';
+import { CommentList } from '@components/matching-detail/CommentList';
+import { StatusBanner } from '@components/matching-detail/StatusBanner';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setMatchingDetailPost, setSelectedHandler } from 'store/index';
-import { matchingPostDetailUrl } from 'api/apiUrls';
-import { LoadingPage } from 'common/state/LoadingPage';
-import { NotFound } from 'common/state/NotFoundPage';
+import { AppDispatch, RootState, setMatchingDetailPost, setSelectedHandler } from '@store/index';
+import { matchingPostDetailUrl } from '@api/apiUrls';
+import { LoadingPage } from '@common/state/LoadingPage';
+import { NotFound } from '@common/state/NotFoundPage';
 import { ContentBox, MatchingDetailLayout, WalkContainer } from './MatchingDetail.style';
 
 export function MatchingDetailPage() {

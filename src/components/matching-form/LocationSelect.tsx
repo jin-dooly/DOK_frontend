@@ -2,9 +2,9 @@ import { Button, Dialog, DialogActions, FormLabel, TextField } from '@mui/materi
 import React, { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setLocation, setLocationDetail } from 'store/index';
+import { AppDispatch, RootState, setLocation, setLocationDetail } from '@store/index';
 import { LocationOn } from '@mui/icons-material';
-import { SearchButton } from 'common/button/SearchButton';
+import { SearchButton } from '@common/button/SearchButton';
 import { DialogContentBox, DialogTitleBox, LocationLayout } from './LocationSelect.styled';
 
 const geocoder = new kakao.maps.services.Geocoder();

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { MoreVert } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
-import { setMatchingPostEditId, setOpenDeleteAlert, setOpenEditAlert, AppDispatch } from 'store/index';
-import { matchingPostDetailUrl } from 'api/apiUrls';
+import { setMatchingPostEditId, setOpenDeleteAlert, setOpenEditAlert, AppDispatch } from '@store/index';
+import { matchingPostDetailUrl } from '@api/apiUrls';
 import { useNavigate } from 'react-router-dom';
-import { MatchingPostType } from 'src/types';
+import { MatchingPostType } from '@types';
 import { IconBox } from './EditMenu.styled';
 
 interface EditMenuProps {

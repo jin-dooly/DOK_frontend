@@ -1,12 +1,12 @@
 import header_logo from '/svg/header_logo.svg';
 import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setUser } from 'store/index';
-import { initUserType } from '../../types';
+import { AppDispatch, RootState, setUser } from '@store/index';
+import { initUserType } from '@types';
 
 import { BorderDiv, CatagoryDiv, LogOutStyledLink, MainDiv, StyledLink, SubCatagoryDiv, SubCatagoryImg } from './Member.style';
 import { Link } from 'react-router-dom';
-import { userUrl } from 'api/apiUrls';
+import { userUrl } from '@api/apiUrls';
 import { CertificationBookmark } from './CertificationBookmark';
 import { MatchingBookmark } from './MatchingBookmark';
 

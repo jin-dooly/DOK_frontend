@@ -21,11 +21,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import React, { useEffect, useState } from 'react';
 import { Clear } from '@mui/icons-material';
-import { SearchButton } from 'common/button/SearchButton';
-import beobjeongdong from 'api/beobjeongdong';
+import { SearchButton } from '@common/button/SearchButton';
+import beobjeongdong from '@api/beobjeongdong';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from 'store/store';
-import { resetMatchingPosts, resetCertificationPosts, setCertificationPostsCount, setFilter, setMatchingPostCount } from 'store/index';
+import { AppDispatch } from '@store/store';
+import { resetMatchingPosts, resetCertificationPosts, setCertificationPostsCount, setFilter, setMatchingPostCount } from '@store/index';
 
 export function TopBarFilter() {
   const dispatch = useDispatch<AppDispatch>();

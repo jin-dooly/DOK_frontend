@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { DogType, UserType, initDogType, initUserType } from '../types';
+import { DogType, UserType, initUserType } from '@types';
 import { MypageUserType } from 'src/types/MypageUserType';
 
 interface userSliceType {

@@ -1,8 +1,7 @@
 import { http, HttpResponse } from 'msw';
-import { dogUrl as root } from 'api/apiUrls';
+import { dogUrl as root } from '@api/apiUrls';
 import { delay } from '@reduxjs/toolkit/dist/utils';
-import { DogType } from 'src/types';
-import { error } from 'console';
+import { DogType } from '@types';
 import dayjs from 'dayjs';
 
 type userParamsType = { id: string };

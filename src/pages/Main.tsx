@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { MainInfo } from '../components/main/MainInfo';
-import { MainSection1 } from '../components/main/MainSection1';
-import { MainSection2 } from '../components/main/MainSection2';
-import { MainSection3 } from '../components/main/MainSection3';
+import { MainInfo } from '@components/main/MainInfo';
+import { MainSection1 } from '@components/main/MainSection1';
+import { MainSection2 } from '@components/main/MainSection2';
+import { MainSection3 } from '@components/main/MainSection3';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, setMainCertificationPosts, setMainMatchingPosts, setMainDogs, setMainMatchingPostCount } from 'store/index';
-import { PageLayout } from '../styles/PageDefault.styled';
-import { LoadingPage } from 'common/state/LoadingPage';
-import { mainUrl, userUrl } from 'api/apiUrls';
+import { AppDispatch, setMainCertificationPosts, setMainMatchingPosts, setMainDogs, setMainMatchingPostCount } from '@store/index';
+import { PageLayout } from '@styles/PageDefault.styled';
+import { LoadingPage } from '@common/state/LoadingPage';
+import { mainUrl, userUrl } from '@api/apiUrls';
 
 export function MainPage() {
   const dispatch = useDispatch<AppDispatch>();

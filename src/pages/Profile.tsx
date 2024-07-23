@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { MypageProfileInfo } from '../components/my-page/MypageProfileInfo';
-import { Navbar } from '../components/user-my-page/Navbar';
+import { MypageProfileInfo } from '@components/my-page/MypageProfileInfo';
+import { Navbar } from '@components/user-my-page/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setIsLoading, setMypageDog, setMypageRating, setMypageUser } from 'store/index';
-import { Forbidden } from 'common/state/Forbidden';
+import { AppDispatch, RootState, setIsLoading, setMypageDog, setMypageRating, setMypageUser } from '@store/index';
+import { Forbidden } from '@common/state/Forbidden';
 import { useParams } from 'react-router-dom';
-import { userUrl } from 'api/apiUrls';
+import { userUrl } from '@api/apiUrls';
 
 // 유저 마이페이지
 export function Profile() {

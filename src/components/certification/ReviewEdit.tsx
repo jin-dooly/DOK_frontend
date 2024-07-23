@@ -1,9 +1,9 @@
 import { Button, Rating, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setCertificationPostOne, setCertificationReview } from 'store/index';
+import { AppDispatch, RootState, setCertificationPostOne, setCertificationReview } from '@store/index';
 import { useState } from 'react';
-import { certificationUrl } from 'api/apiUrls';
-import { AlertBottom } from 'common/alert/AlertBottom';
+import { certificationUrl } from '@api/apiUrls';
+import { AlertBottom } from '@common/alert/AlertBottom';
 import { ReviewBox } from './Review.styled';
 
 interface ReviewEditProps {
@@ -96,7 +96,7 @@ export function ReviewEdit({ setIsEditing }: ReviewEditProps) {
       <div className="top">
         <div className="label">견주의 후기</div>
         <div className="left">
-          <img src={matchingPost.user.userImg} className="user-img" />
+          <img src={matchingPost.user.profileImg} className="user-img" />
           <div>{matchingPost.user.nickname}</div>
           <Rating readOnly={false} value={rating} onChange={handleChangeRating}></Rating>
         </div>

@@ -1,27 +1,27 @@
 import { useEffect, useState } from 'react';
 import * as styled from './MatchingForm.styled';
-import { PostCreateFormLayout } from 'common/create-page/PostCreateFormLayout';
-import { AlertSnackbar } from 'common/alert/AlertSnackbar';
-import { AlertSuccess } from 'common/alert/AlertSuccess';
-import { DogSelect } from '../components/matching-form/DogSelect';
-import { DateSelect } from '../components/matching-form/DateSelect';
-import { DurationSelect } from '../components/matching-form/DurationSelect';
-import { PaySelect } from '../components/matching-form/PaySelect';
-import { RequestTextField } from '../components/matching-form/RequestTextField';
-import { LocationSelect } from '../components/matching-form/LocationSelect';
+import { PostCreateFormLayout } from '@common/create-page/PostCreateFormLayout';
+import { AlertSnackbar } from '@common/alert/AlertSnackbar';
+import { AlertSuccess } from '@common/alert/AlertSuccess';
+import { DogSelect } from '@components/matching-form/DogSelect';
+import { DateSelect } from '@components/matching-form/DateSelect';
+import { DurationSelect } from '@components/matching-form/DurationSelect';
+import { PaySelect } from '@components/matching-form/PaySelect';
+import { RequestTextField } from '@components/matching-form/RequestTextField';
+import { LocationSelect } from '@components/matching-form/LocationSelect';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch, RootState, setDateSelect, setDogSelect, setDurationSelect, setLocation, setLocationDetail, setPaySelect, setRequestText } from 'store/index';
+import { AppDispatch, RootState, setDateSelect, setDogSelect, setDurationSelect, setLocation, setLocationDetail, setPaySelect, setRequestText } from '@store/index';
 import { useNavigate } from 'react-router';
-import { PostCreateGroup } from 'common/create-page/PostCreateGroup';
+import { PostCreateGroup } from '@common/create-page/PostCreateGroup';
 import dayjs from 'dayjs';
 import { useLocation } from 'react-router-dom';
-import { Forbidden } from 'common/state/Forbidden';
-import { AlertError } from 'common/alert/AlertError';
-import { matchingFormUrl } from 'api/apiUrls';
-import dateTimeFormat from '../utils/dateTimeFormat';
-import durationTimeFormat from '../utils/durationTimeFormat';
-import { AlertBottom } from 'common/alert/AlertBottom';
+import { Forbidden } from '@common/state/Forbidden';
+import { AlertError } from '@common/alert/AlertError';
+import { matchingFormUrl } from '@api/apiUrls';
+import dateTimeFormat from '@utils/dateTimeFormat';
+import durationTimeFormat from '@utils/durationTimeFormat';
+import { AlertBottom } from '@common/alert/AlertBottom';
 import { DogType } from 'src/types';
 
 export function MatchingUpdatePage() {
@@ -164,7 +164,7 @@ export function MatchingUpdatePage() {
         onClose={() => setOpenSubmit(false)}
         onClick={handleSubmit}
         title="글을 수정하시겠습니까?"
-        desc={`${dogSelect?.dogName} | ${dateTimeFormat(dateSelect || '', 'date-time')} | ${durationTimeFormat(
+        desc={`${dogSelect?.name} | ${dateTimeFormat(dateSelect || '', 'date-time')} | ${durationTimeFormat(
           durationSelect,
         )} | ${paySelect}원\n요청 사항 : ${requestText}\n만남 위치 : ${locationSelect?.text} ${locationDetailSelect || ''}`}
       />

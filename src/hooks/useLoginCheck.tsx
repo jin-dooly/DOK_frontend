@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { initUserType } from '../types';
-import { AppDispatch, setDog, setIsLoading, setUser } from 'store/index';
-import { myInfoUrl } from 'api/apiUrls';
+import { initUserType } from '@types';
+import { AppDispatch, setDog, setIsLoading, setUser } from '@store/index';
+import { myInfoUrl } from '@api/apiUrls';
 
 export const useLoginCheck = () => {
   const dispatch = useDispatch<AppDispatch>();

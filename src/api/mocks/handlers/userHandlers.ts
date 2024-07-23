@@ -1,6 +1,6 @@
 import { HttpResponse, PathParams, StrictRequest, delay, http } from 'msw';
-import { userUrl as root } from '../../apiUrls';
-import { DogType, initUserType, UserType } from 'src/types';
+import { userUrl as root } from '@api/apiUrls';
+import { DogType, initUserType, UserType } from '@types';
 import dayjs from 'dayjs';
 
 type filteredUserType = Omit<UserType, 'name' | 'phoneNumber' | 'userId' | 'password' | 'createdAt' | 'updatedAt' | 'deletedAt' | '__v'>;

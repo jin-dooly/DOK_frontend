@@ -1,10 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar, setOpenErrorModifyInfoAlert } from 'store/index';
+import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar, setOpenErrorModifyInfoAlert } from '@store/index';
 import DaumPostcode from 'react-daum-postcode';
 import { ChangeProfileImg } from './ChangeProfileImg';
-import { ButtonMain } from 'common/button/ButtonMain';
-import { userUrl } from 'api/apiUrls';
+import { ButtonMain } from '@common/button/ButtonMain';
+import { userUrl } from '@api/apiUrls';
 import { AddressLayout, ButtonContainer, ModifyInfoContainer } from './ModifyInfo.style';
 import { Box, Button, TextField, Modal } from '@mui/material';
 
@@ -72,7 +72,7 @@ export function ModifyInfo() {
           address: userInfo.address,
           phoneNumber: userInfo.phoneNumber.slice(4),
           nickname: userInfo.nickname,
-          userImg: selectedImg,
+          profileImg: selectedImg,
         }),
         credentials: 'include',
       });

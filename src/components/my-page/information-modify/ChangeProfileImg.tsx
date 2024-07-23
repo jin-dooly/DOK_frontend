@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setSelectedImg } from 'store/index';
+import { AppDispatch, RootState, setSelectedImg } from '@store/index';
 import userImage from '/svg/user_image1.svg';
 import ModeIcon from '@mui/icons-material/Mode';
 import { EditIcon, ImgContainer, OpacityContainer } from './ChangeProfileImg.style';
@@ -8,11 +8,11 @@ import { EditIcon, ImgContainer, OpacityContainer } from './ChangeProfileImg.sty
 export const ChangeProfileImg = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { user } = useSelector((state: RootState) => state.user);
-  const [imagePath, setImagePath] = useState<string>(user.userImg || userImage);
+  const [imagePath, setImagePath] = useState<string>(user.profileImg || userImage);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    dispatch(setSelectedImg(user.userImg || ''));
+    dispatch(setSelectedImg(user.profileImg || ''));
   }, []);
 
   const handleImageClick = () => {

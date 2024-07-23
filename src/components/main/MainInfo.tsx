@@ -4,7 +4,7 @@ import logoImage from '/dok_logo.png';
 import { Pets, KeyboardArrowRight } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
+import { RootState } from '@store/store';
 import { Contents, LeftBox, MainTopImage, Section } from './MainInfo.styled';
 
 const easeOutExpo = (t: number) => {

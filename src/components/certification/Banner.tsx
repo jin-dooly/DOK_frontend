@@ -1,5 +1,5 @@
 import BannerImage from '/svg/walking_dog.svg';
-import { ListPageBanner } from 'common/list-page/ListPageBanner';
+import { ListPageBanner } from '@common/list-page/ListPageBanner';
 import { Image } from './Banner.style.tsx';
 
 export function CertifiBanner() {

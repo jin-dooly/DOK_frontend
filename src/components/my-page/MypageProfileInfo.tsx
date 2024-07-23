@@ -1,6 +1,6 @@
 import { Rating } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import { Address, Img, Name, TotalFrame, WalkInfo } from './ProfileInfo.style';
 
 // 마이페이지 상단 User의 프로필 정보 입니다.
@@ -11,7 +11,7 @@ export const MypageProfileInfo = () => {
   return (
     <TotalFrame>
       <Img>
-        <img className="mypageUserImg user-img" src={mypageUser.userImg || '/svg/user_image1.svg'} />
+        <img className="mypageprofileImg user-img" src={mypageUser.profileImg || '/svg/user_image1.svg'} />
       </Img>
       <div>
         <Name>

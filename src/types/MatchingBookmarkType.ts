@@ -1,19 +1,21 @@
 export interface MatchingBookmarkType {
-  _id: string,
+  _id: string;
   userDog: {
-    dogName : string,
-  };  
+    name: string;
+  };
   walkingDate: string;
-  walkingDuration: number;  
-  userCommentNumber : number;
+  walkingDuration: number;
+  userCommentNumber: number;
 }
 
-export const initMatchingBookmarkType: MatchingBookmarkType[] = [{
+export const initMatchingBookmarkType: MatchingBookmarkType[] = [
+  {
     _id: '',
     userDog: {
-      dogName : '',
+      name: '',
     },
     walkingDate: '',
     walkingDuration: 0,
-    userCommentNumber : 0,
-}];
+    userCommentNumber: 0,
+  },
+];

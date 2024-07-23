@@ -1,11 +1,11 @@
 import { CardContainer, Contents, Review } from './PostCard.styled';
 import { AccessTime, Pets } from '@mui/icons-material';
-import { ProfileInfo } from 'common/user/ProfileInfo';
+import { ProfileInfo } from '@common/user/ProfileInfo';
 import { Rating, Tooltip } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setCertificationDetail, setCertificationDetailIndex } from 'store/index';
-import { CertificationPostType } from '../../types';
-import dateTimeFormat from '../../utils/dateTimeFormat';
+import { AppDispatch, RootState, setCertificationDetail, setCertificationDetailIndex } from '@store/index';
+import { CertificationPostType } from '@types';
+import dateTimeFormat from '@utils/dateTimeFormat';
 import notfoundimg from '/svg/notfoundimage.svg';
 
 interface CertifiPostCardProps {
@@ -15,7 +15,7 @@ interface CertifiPostCardProps {
 }
 
 export function CertifiPostCard({ contents, onClick, index }: CertifiPostCardProps) {
-  const { user, matchingPost, postText, certificationImg, review, createdAt } = contents;
+  const { _id, user, matchingPost, postText, certificationImg, review, createdAt } = contents;
   const { user: _user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,13 +27,13 @@ export function CertifiPostCard({ contents, onClick, index }: CertifiPostCardPro
   };
 
   return (
-    <CardContainer className="certifiCard pointer" onClick={handleOpenDetail}>
-      <ProfileInfo _id={user._id} nickname={user.nickname} userImg={user.userImg} time={createdAt} size="small" />
+    <CardContainer to={`/matching/${_id}`} className="certifiCard pointer" onClick={handleOpenDetail}>
+      <ProfileInfo _id={user._id} nickname={user.nickname} profileImg={user.profileImg} time={createdAt} size="small" />
       <Tooltip
         title={
           <div style={{ fontSize: '14px' }}>
             <Pets fontSize="inherit" />
-            {matchingPost.userDog?.dogName || ''}
+            {matchingPost.userDog?.name || ''}
           </div>
         }
         placement="top"

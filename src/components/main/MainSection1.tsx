@@ -1,7 +1,7 @@
 import { Children } from 'react';
 import { MainPetBox } from './MainPetBox';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState } from '@store/index';
 import MouseOutlinedIcon from '@mui/icons-material/MouseOutlined';
 import { Section, Scroll, PetsScrollBox, TitleBox } from './MainSection1.styled';
 
@@ -18,7 +18,7 @@ export function MainSection1() {
           </Scroll>
           <Section>
             <PetsScrollBox>
-              {Children.toArray(dogs.map(({ dogImg, dogName, gender }, idx) => <MainPetBox className={idx % 2 ? 'right' : 'left'} petData={{ dogImg, dogName, gender }} />))}
+              {Children.toArray(dogs.map(({ profileImg, name, gender }, idx) => <MainPetBox className={idx % 2 ? 'right' : 'left'} petData={{ profileImg, name, gender }} />))}
             </PetsScrollBox>
             <TitleBox>
               <div>

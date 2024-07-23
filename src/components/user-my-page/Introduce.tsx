@@ -1,5 +1,5 @@
 import { DogButton } from '../my-page/DogButton';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 import { Add, Dog, Writing } from './Introduce.style';
 

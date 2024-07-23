@@ -5,10 +5,10 @@ import { ModifyInfo } from './ModifyInfo';
 import { ChangePassword } from './ChangePassword';
 import { MainContainer, ModifyContainer, ModifyTab, TabContainer, TabImg } from './Modify.style';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenErrorModifyInfoAlert, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar } from 'store/index';
-import { AlertSnackbar } from 'common/alert/AlertSnackbar';
-import { AlertSuccess } from 'common/alert/AlertSuccess';
-import { AlertError } from 'common/alert/AlertError';
+import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenErrorModifyInfoAlert, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar } from '@store/index';
+import { AlertSnackbar } from '@common/alert/AlertSnackbar';
+import { AlertSuccess } from '@common/alert/AlertSuccess';
+import { AlertError } from '@common/alert/AlertError';
 
 export const Modify = () => {
   const dispatch = useDispatch<AppDispatch>();

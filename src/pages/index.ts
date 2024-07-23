@@ -8,3 +8,4 @@ export * from './MatchingCreate';
 export * from './MyPage';
 export * from './SignUp';
 export * from './MatchingUpdate';
+export * from './Profile';

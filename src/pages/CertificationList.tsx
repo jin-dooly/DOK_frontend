@@ -1,16 +1,16 @@
-import { ListPageTopBar } from '../components/common/list-page/ListPageTopBar';
-import { CertifiBanner } from '../components/certification/Banner';
+import { ListPageTopBar } from '@common/list-page/ListPageTopBar';
+import { CertifiBanner } from '@components/certification/Banner';
 import { Children, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, addCertificationPosts, resetCertificationPosts, setCertificationPostsCount, setFilter } from 'store/index';
-import { CertifiPostCard } from '../components/certification/PostCard';
-import { CertificationPostDetail } from '../components/certification/PostDetail';
-import { CardListContainer } from '../styles/CardListContainer.styled';
-import { ScrollToTopButton } from 'common/button/ScrollTopButton';
+import { AppDispatch, RootState, addCertificationPosts, resetCertificationPosts, setCertificationPostsCount, setFilter } from '@store/index';
+import { CertifiPostCard } from '@components/certification/PostCard';
+import { CertificationPostDetail } from '@components/certification/PostDetail';
+import { CardListContainer } from '@styles/CardListContainer.styled';
+import { ScrollToTopButton } from '@common/button/ScrollTopButton';
 import { useInView } from 'react-intersection-observer';
-import { Loading } from 'common/state/Loading';
-import { EmptyData } from 'common/state/EmptyData';
-import { certificationUrl } from 'api/apiUrls';
+import { Loading } from '@common/state/Loading';
+import { EmptyData } from '@common/state/EmptyData';
+import { certificationUrl } from '@api/apiUrls';
 import dayjs from 'dayjs';
 import { CertificationList, MyDialog, Section } from './CertificationList.styled';
 

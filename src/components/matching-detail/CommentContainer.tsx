@@ -1,9 +1,9 @@
 import { ReplyContainer } from './CommentContainer.style';
 import { CommentItem } from './CommentItem';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import { Children } from 'react';
-import { MatchingCommentType } from '../../types';
+import { MatchingCommentType } from '@types';
 
 interface type {
   comment: MatchingCommentType;

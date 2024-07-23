@@ -7,7 +7,7 @@ export interface MypageUserType {
   address: { text: string; code: string };
   phoneNumber: string;
   introduce: string;
-  userImg: string;
+  profileImg: string;
   isCertificated: boolean;
   deletedAt: null | Date | string;
   createdAt: Date | string;
@@ -22,7 +22,7 @@ export const initMypageUserType: MypageUserType = {
   nickname: '',
   address: { text: '', code: '' },
   phoneNumber: '',
-  userImg: '',
+  profileImg: '',
   introduce: '',
   isCertificated: false,
   deletedAt: null,

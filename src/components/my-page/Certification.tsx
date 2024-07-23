@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, addCertificationPosts, resetCertificationPosts, setCertificationPostsCount } from 'store/index';
+import { AppDispatch, RootState, addCertificationPosts, resetCertificationPosts, setCertificationPostsCount } from '@store/index';
 import { Children, useEffect, useState } from 'react';
-import { Loading } from 'common/state/Loading';
-import { EmptyData } from 'common/state/EmptyData';
+import { Loading } from '@common/state/Loading';
+import { EmptyData } from '@common/state/EmptyData';
 import { CertificationPostDetail } from '../certification/PostDetail';
-import { ScrollToTopButton } from 'common/button/ScrollTopButton';
+import { ScrollToTopButton } from '@common/button/ScrollTopButton';
 import { CertifiPostCard } from '../certification/PostCard';
-import { CardListContainer } from '../../styles/CardListContainer.styled';
-import { TopBarTitle } from 'common/list-page/TopBarTitle';
+import { CardListContainer } from '@styles/CardListContainer.styled';
+import { TopBarTitle } from '@common/list-page/TopBarTitle';
 import { MainFrame, MyDialog, Section, TitleFrame } from './Certification.style';
-import { myPageUrl } from 'api/apiUrls';
+import { myPageUrl } from '@api/apiUrls';
 
 export const Certification = () => {
   const dispatch = useDispatch<AppDispatch>();

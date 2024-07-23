@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { CertificationPostType, initCertificationPostType } from '../types';
+import { CertificationPostType, initCertificationPostType } from '@types';
 
 interface certificationSliceType {
   certificationPosts: CertificationPostType[];

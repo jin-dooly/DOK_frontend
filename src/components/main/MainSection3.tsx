@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/store';
+import { RootState } from '@store/index';
 import { CertifiPostCard } from '../certification/PostCard';
 import { useNavigate } from 'react-router-dom';
 import { BackgroundBox, Contents, InnerBox, Section, Title } from './MainSection3.styled';

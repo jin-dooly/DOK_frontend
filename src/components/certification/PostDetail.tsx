@@ -2,9 +2,9 @@ import { Contents, DetailBox, Left, Right, SlideIconButton, Top } from './PostDe
 import { Children, useEffect, useState } from 'react';
 import { Box, IconButton, MobileStepper } from '@mui/material';
 import { AccessTime, ChatOutlined, Clear, KeyboardArrowLeft, KeyboardArrowRight, LocationOn } from '@mui/icons-material';
-import { ProfileInfo } from 'common/user/ProfileInfo';
+import { ProfileInfo } from '@common/user/ProfileInfo';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import dayjs from 'dayjs';
 import { ReviewEdit } from './ReviewEdit';
 import { Review } from './Review';
@@ -91,14 +91,14 @@ export function CertificationPostDetail({ handleClose }: CertificationPostDetail
       <Right className="custom-scrollbar">
         <div>
           <Top>
-            <ProfileInfo _id={user._id} nickname={user.nickname} userImg={user.userImg} time={createdAt} />
+            <ProfileInfo _id={user._id} nickname={user.nickname} profileImg={user.profileImg} time={createdAt} />
           </Top>
 
           <Contents>
             <div>
               <img className="icon" src="/svg/card_dog_icon.svg" />
               <div className="title">강아지</div>
-              <div className="text">{matchingPost.userDog.dogName}</div>
+              <div className="text">{matchingPost.userDog.name}</div>
             </div>
 
             <div>

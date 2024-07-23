@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CertificationPostType, DogType, MatchingPostType } from '../types';
+import { CertificationPostType, DogType, MatchingPostType } from '@types';
 
 interface initialStateType {
   matchingPostCount: number;

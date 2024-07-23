@@ -1,7 +1,6 @@
-import { http, HttpResponse } from 'msw';
-import { mainUrl as root } from '../../apiUrls';
-import { delay } from '@reduxjs/toolkit/dist/utils';
-import { CertificationPostType, DogType, MatchingPostType } from 'src/types';
+import { delay, http, HttpResponse } from 'msw';
+import { mainUrl as root } from '@api/apiUrls';
+import { CertificationPostType, DogType, MatchingPostType } from '@types';
 import dayjs from 'dayjs';
 
 const getRandomDogs = (dogs: DogType[]): DogType[] => {

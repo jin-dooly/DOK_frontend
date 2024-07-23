@@ -1,13 +1,13 @@
 import TextField from '@mui/material/TextField';
-import { ButtonMain } from 'common/button/ButtonMain';
-import { ButtonSub } from 'common/button/ButtonSub';
+import { ButtonMain } from '@common/button/ButtonMain';
+import { ButtonSub } from '@common/button/ButtonSub';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, setUser } from 'store/index';
+import { AppDispatch, setUser } from '@store/index';
 import { useNavigate } from 'react-router-dom';
-import { AlertSnackbar } from 'common/alert/AlertSnackbar';
+import { AlertSnackbar } from '@common/alert/AlertSnackbar';
 import { MainFrame, SubFrame } from './Login.style';
-import { userUrl } from 'api/apiUrls';
+import { userUrl } from '@api/apiUrls';
 
 export function Login() {
   const [userId, setUserId] = useState<string>();

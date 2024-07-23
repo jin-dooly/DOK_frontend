@@ -1,11 +1,11 @@
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setMatchingBookmark } from 'store/index';
+import { AppDispatch, RootState, setMatchingBookmark } from '@store/index';
 import { Certification, TableContainer } from './MatchingBookmark.style';
 import header_bookmark_off from '/svg/header_bookmark_off.svg';
 import header_bookmark_on from '/svg/header_bookmark_on.svg';
-import { bookmarkUrl } from 'api/apiUrls';
+import { bookmarkUrl } from '@api/apiUrls';
 
 export function MatchingBookmark() {
   const { user } = useSelector((state: RootState) => state.user);
@@ -67,10 +67,10 @@ export function MatchingBookmark() {
                   <TableBody>
                     {matchingBookmark.map((post: any) =>
                       post.map((item: any, index: any) =>
-                        item.userDog?.dogName ? (
+                        item.userDog?.name ? (
                           <TableRow key={item._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component="th" scope="row">
-                              {item.userDog?.dogName} | {item.walkingDate?.split('T')[0]} | {item.walkingDuration * 60}분
+                              {item.userDog?.name} | {item.walkingDate?.split('T')[0]} | {item.walkingDuration * 60}분
                             </TableCell>
                             <TableCell align="right">
                               <Button id={item._id} color="subW" variant="outlined" size="small">

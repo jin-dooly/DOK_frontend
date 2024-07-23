@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { DogType } from '../types';
+import { DogType } from '@types';
 import dayjs from 'dayjs';
 
 type initialStateType = {

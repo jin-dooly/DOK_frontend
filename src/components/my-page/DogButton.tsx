@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { DogDetail } from './DogDetail';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import { DogCard } from './DogCard';
-import { Loading } from 'common/state/Loading';
+import { Loading } from '@common/state/Loading';
 import { useLocation, useParams } from 'react-router-dom';
 import { AddButton } from './DogButton.style';
 
@@ -27,12 +27,12 @@ export const DogButton = () => {
         <>
           {mypageDog.map((item) => (
             <DogCard
-              dogImg={item.dogImg}
+              profileImg={item.profileImg}
               key={item._id}
-              dogName={item.dogName}
+              name={item.name}
               birth={item.birth}
               gender={item.gender}
-              dogType={item.dogType}
+              type={item.type}
               personality={item.personality}
               note={item.note}
             />
@@ -42,12 +42,12 @@ export const DogButton = () => {
         <>
           {dog.map((item) => (
             <DogCard
-              dogImg={item.dogImg}
+              profileImg={item.profileImg}
               key={item._id}
-              dogName={item.dogName}
+              name={item.name}
               birth={item.birth}
               gender={item.gender}
-              dogType={item.dogType}
+              type={item.type}
               personality={item.personality}
               note={item.note}
             />

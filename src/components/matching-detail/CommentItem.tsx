@@ -1,13 +1,13 @@
 import { CommentInfo, CommentItemLayout, OptionButton, UserImg } from './CommentItem.style';
 import userImage from '/svg/user_image1.svg';
 import { CommentInput } from './CommentInput';
-import { MatchingCommentType } from '../../types';
-import timeDiff from '../../utils/timeDiff';
+import { MatchingCommentType } from '@types';
+import timeDiff from '@utils/timeDiff';
 import { useEffect, useState } from 'react';
-import { AlertError } from 'common/alert/AlertError';
-import { matchingPostDetailUrl } from 'api/apiUrls';
+import { AlertError } from '@common/alert/AlertError';
+import { matchingPostDetailUrl } from '@api/apiUrls';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, deleteIsOpenCommentInput, deleteMatchingComment, setIsOpenCommentInput, toggleIsOpenCommentInput } from 'store/index';
+import { AppDispatch, RootState, deleteIsOpenCommentInput, deleteMatchingComment, setIsOpenCommentInput, toggleIsOpenCommentInput } from '@store/index';
 import { useNavigate } from 'react-router-dom';
 
 interface type {
@@ -76,7 +76,7 @@ export function CommentItem({ comment, commentType }: type) {
     )
   ) : (
     <CommentItemLayout>
-      <UserImg src={commentUser.userImg || userImage} className={`pointer user-img ${commentType}`} onClick={handleToProfile} />
+      <UserImg src={commentUser.profileImg || userImage} className={`pointer user-img ${commentType}`} onClick={handleToProfile} />
       <div>
         <CommentInfo>
           <span className="pointer" onClick={handleToProfile}>
