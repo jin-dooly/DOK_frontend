@@ -1,23 +1,27 @@
-const domain = '/api/';
+export const DOMAIN = '/api/';
 
-export const mainUrl = domain + 'main';
-export const userUrl = domain + 'users';
-export const matchingPostListUrl = domain + 'matchingPostLists';
-export const matchingPostDetailUrl = domain + 'matchingPostDetail';
-export const matchingFormUrl = domain + 'matchingRequestRouter';
-export const certificationUrl = domain + 'certificationRouter';
-export const dogUrl = domain + 'dogs';
-export const myPageUrl = domain + 'myPage';
-export const uploadImageUrl = domain + 'upload/image';
-export const bookmarkUrl = domain + 'bookMark';
+export const loginUrl = DOMAIN + 'login';
+export const logoutUrl = DOMAIN + 'logout';
 
-export const logOutUrl = domain + 'users/signOut';
-export const logInUrl = domain + 'users/signIn';
-export const signUpUrl = domain + 'users/signUp';
-export const addPostListUrl = domain + 'mypage/myCertificationLists';
-export const myDogUrl = domain + 'users/myDog';
-export const myInfoUrl = domain + 'users/myInfo';
-export const myPasswordUrl = domain + 'users/myPassword';
-export const myMatchingPostsUrl = domain + 'mypage/myMatchingPosts';
-export const myPageUserInfoUrl = domain + 'users/userInfo';
-export const myIntroduceUrl = domain + 'users/myIntroduce';
+export const mainUrl = DOMAIN + 'main';
+export const userUrl = DOMAIN + 'users';
+export const dogUrl = DOMAIN + 'dogs';
+export const jobPostUrl = DOMAIN + 'job-posts';
+
+export const matchingPostDetailUrl = DOMAIN + 'matchingPostDetail';
+export const matchingFormUrl = DOMAIN + 'matchingRequestRouter';
+export const certificationUrl = DOMAIN + 'certificationRouter';
+export const myPageUrl = DOMAIN + 'myPage';
+export const uploadImageUrl = DOMAIN + 'upload/image';
+export const bookmarkUrl = DOMAIN + 'bookMark';
+
+export const logOutUrl = DOMAIN + 'users/signOut';
+export const logInUrl = DOMAIN + 'users/signIn';
+export const signUpUrl = DOMAIN + 'users/signUp';
+export const addPostListUrl = DOMAIN + 'mypage/myCertificationLists';
+export const myDogUrl = DOMAIN + 'users/myDog';
+export const myInfoUrl = DOMAIN + 'users/myInfo';
+export const myPasswordUrl = DOMAIN + 'users/myPassword';
+export const myMatchingPostsUrl = DOMAIN + 'mypage/myMatchingPosts';
+export const myPageUserInfoUrl = DOMAIN + 'users/userInfo';
+export const myIntroduceUrl = DOMAIN + 'users/myIntroduce';

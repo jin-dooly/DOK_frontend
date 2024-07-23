@@ -24,7 +24,7 @@ export function MainPage() {
         const data = await res.json();
 
         if (res.ok) {
-          const [mathingPostCount, dogs, matchingPosts, certificationPosts] = data;
+          const [mathingPostCount, dogs, matchingPosts, certificationPosts] = data.data;
 
           dispatch(setMainMatchingPostCount(mathingPostCount));
           dispatch(setMainDogs(dogs.slice(0, 6)));
