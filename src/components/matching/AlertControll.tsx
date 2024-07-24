@@ -1,8 +1,8 @@
-import { matchingFormUrl } from 'api/apiUrls';
-import { AlertError } from 'common/alert/AlertError';
+import { matchingFormUrl } from '@api/apiUrls';
+import { AlertError } from '@common/alert/AlertError';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AppDispatch, RootState, setMatchingPostEditId, setOpenDeleteAlert, setOpenEditAlert } from 'store/index';
+import { AppDispatch, RootState, setMatchingPostEditId, setOpenDeleteAlert, setOpenEditAlert } from '@store/index';
 
 export function AlertControll() {
   const dispatch = useDispatch<AppDispatch>();

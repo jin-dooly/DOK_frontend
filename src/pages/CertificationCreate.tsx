@@ -1,23 +1,23 @@
 import React, { Children, useEffect, useState } from 'react';
 import * as styled from './CertificationCreate.styled';
-import { PostCreateFormLayout } from '../components/common/create-page/PostCreateFormLayout';
+import { PostCreateFormLayout } from '@common/create-page/PostCreateFormLayout';
 import { AddPhotoAlternateOutlined, ChatOutlined, Close, LocationOn, Pets } from '@mui/icons-material';
 import { FormLabel, IconButton, TextField } from '@mui/material';
-import { PostCreateGroup } from 'common/create-page/PostCreateGroup';
+import { PostCreateGroup } from '@common/create-page/PostCreateGroup';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AlertSnackbar } from 'common/alert/AlertSnackbar';
-import { AlertSuccess } from 'common/alert/AlertSuccess';
-import { certificationUrl, matchingPostDetailUrl, uploadImageUrl } from 'api/apiUrls';
+import { AlertSnackbar } from '@common/alert/AlertSnackbar';
+import { AlertSuccess } from '@common/alert/AlertSuccess';
+import { certificationUrl, matchingPostDetailUrl, uploadImageUrl } from '@api/apiUrls';
 import { MatchingPostType } from '../types/index';
-import dateTimeFormat from '../utils/dateTimeFormat';
-import durationTimeFormat from '../utils/durationTimeFormat';
+import dateTimeFormat from '@utils/dateTimeFormat';
+import durationTimeFormat from '@utils/durationTimeFormat';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
-import { Forbidden } from 'common/state/Forbidden';
-import { NotFound } from 'common/state/NotFoundPage';
-import { LoadingPage } from 'common/state/LoadingPage';
-import { AlertError } from 'common/alert/AlertError';
-import { AlertBottom } from 'common/alert/AlertBottom';
+import { RootState } from '@store/index';
+import { Forbidden } from '@common/state/Forbidden';
+import { NotFound } from '@common/state/NotFoundPage';
+import { LoadingPage } from '@common/state/LoadingPage';
+import { AlertError } from '@common/alert/AlertError';
+import { AlertBottom } from '@common/alert/AlertBottom';
 
 export function CertificationCreatePage() {
   const { user } = useSelector((state: RootState) => state.user);
@@ -237,7 +237,7 @@ export function CertificationCreatePage() {
                 <styled.Contents>
                   <Pets className="icon" />
                   <Link to={`/matching/${matchingPost?._id}`}>
-                    {`${matchingPost?.userDog.dogName} | ${matchingPost?.walkingDate && dateTimeFormat(matchingPost.walkingDate, 'date')} | ${
+                    {`${matchingPost?.userDog.name} | ${matchingPost?.walkingDate && dateTimeFormat(matchingPost.walkingDate, 'date')} | ${
                       matchingPost?.walkingDate && durationTimeFormat(matchingPost?.walkingDuration)
                     }`}
                   </Link>

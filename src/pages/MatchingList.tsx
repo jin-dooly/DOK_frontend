@@ -1,17 +1,17 @@
-import { MatchingBanner } from '../components/matching/Banner';
+import { MatchingBanner } from '@components/matching/Banner';
 import { useState, useEffect, Children } from 'react';
-import { AppDispatch, RootState, addMatchingPosts, resetMatchingPosts, setFilter, setMatchingPostCount, setMatchingPostEditId } from 'store/index';
+import { AppDispatch, RootState, addMatchingPosts, resetMatchingPosts, setFilter, setMatchingPostCount, setMatchingPostEditId } from '@store/index';
 import { useDispatch, useSelector } from 'react-redux';
-import { MatchingCard } from '../components/matching/Card';
-import { ScrollToTopButton } from '../components/common/button/ScrollTopButton';
-import { ListPageTopBar } from '../components/common/list-page/ListPageTopBar';
-import { CardListContainer } from '../styles/CardListContainer.styled';
+import { MatchingCard } from '@components/matching/Card';
+import { ScrollToTopButton } from '@common/button/ScrollTopButton';
+import { ListPageTopBar } from '@common/list-page/ListPageTopBar';
+import { CardListContainer } from '@styles/CardListContainer.styled';
 import { useInView } from 'react-intersection-observer';
 import dayjs from 'dayjs';
-import { Loading } from 'common/state/Loading';
-import { EmptyData } from 'common/state/EmptyData';
-import { matchingPostListUrl } from 'api/apiUrls';
-import { PageLayout, Section } from '../styles/PageDefault.styled';
+import { Loading } from '@common/state/Loading';
+import { EmptyData } from '@common/state/EmptyData';
+import { matchingPostListUrl } from '@api/apiUrls';
+import { PageLayout, Section } from '@styles/PageDefault.styled';
 
 export function MatchingListPage() {
   const dispatch = useDispatch<AppDispatch>();

@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { MatchingBookmarkType, MatchingPostType } from '../types';
-import { RequestHandlerType } from '../types';
-import { MatchingCommentType } from '../types';
+import { MatchingBookmarkType, MatchingPostType } from '@types';
+import { RequestHandlerType } from '@types';
+import { MatchingCommentType } from '@types';
 
 type matchingType = {
   matchingPosts: MatchingPostType[];
@@ -33,7 +33,7 @@ const matchingSlice = createSlice({
   reducers: {
     resetMatchingPosts: (state) => {
       state.matchingPosts = [];
-    },    
+    },
     addMatchingPosts: (state, action: PayloadAction<MatchingPostType[]>) => {
       state.matchingPosts.push(...action.payload);
     },
@@ -65,7 +65,7 @@ const matchingSlice = createSlice({
     setMatchingPostEditId: (state, action: PayloadAction<string>) => {
       state.matchingPostEditId = action.payload;
     },
-    updateMatchingComment: (state, action: PayloadAction<{commentId: string | undefined, commentData: MatchingCommentType}>) => {
+    updateMatchingComment: (state, action: PayloadAction<{ commentId: string | undefined; commentData: MatchingCommentType }>) => {
       const { commentId, commentData } = action.payload;
       const commentIdx = state.matchingComments.findIndex((comment) => comment._id === commentId);
       state.matchingComments.splice(commentIdx, 1, commentData);
@@ -79,7 +79,7 @@ const matchingSlice = createSlice({
     deleteIsOpenCommentInput: (state, action: PayloadAction<string>) => {
       delete state.isOpenCommentInput[action.payload];
     },
-    setMatchingBookmark: (state, action : PayloadAction<MatchingBookmarkType[]>) => {
+    setMatchingBookmark: (state, action: PayloadAction<MatchingBookmarkType[]>) => {
       state.matchingBookmark = action.payload;
     },
   },
@@ -101,6 +101,6 @@ export const {
   setIsOpenCommentInput,
   toggleIsOpenCommentInput,
   deleteIsOpenCommentInput,
-  setMatchingBookmark,  
+  setMatchingBookmark,
 } = matchingSlice.actions;
 export default matchingSlice;

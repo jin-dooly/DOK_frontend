@@ -1,7 +1,6 @@
-import { http, HttpResponse } from 'msw';
-import { mainUrl as root } from '../../apiUrls';
-import { delay } from '@reduxjs/toolkit/dist/utils';
-import { CertificationPostType, DogType, MatchingPostType } from 'src/types';
+import { delay, http, HttpResponse } from 'msw';
+import { mainUrl as root } from '@api/apiUrls';
+import { CertificationPostType, DogType, MatchingPostType, UserType } from '@types';
 import dayjs from 'dayjs';
 
 const getRandomDogs = (dogs: DogType[]): DogType[] => {
@@ -38,7 +37,7 @@ export const homeHandlers = [
     const matchingPostRes = await fetch('mockData/matchingPosts.json');
     const matchingPosts = await matchingPostRes.json();
     const matchingPostCount = matchingPosts.length;
-    const recentMatchingPosts = matchingPosts.sort((a: MatchingPostType, b: MatchingPostType) => dayjs(a.createdAt).diff(dayjs(b.createdAt))).slice(0, 6);
+    const recentMatchingPosts = matchingPosts.sort((a: MatchingPostType, b: MatchingPostType) => dayjs(b.createdAt).diff(dayjs(a.createdAt))).slice(0, 6);
 
     const dogRes = await fetch('mockData/dogs.json');
     const dogs = await dogRes.json();
@@ -46,7 +45,8 @@ export const homeHandlers = [
 
     const certificationPostRes = await fetch('mockData/certificationPosts.json');
     const certificationPosts = await certificationPostRes.json();
-    const highRatingPosts = certificationPosts.sort((a: CertificationPostType, b: CertificationPostType) => (a.review.rating || 0) - (b.review.rating || 0)).slice(0, 3);
+    const highRatingPosts = certificationPosts.sort((a: CertificationPostType, b: CertificationPostType) => (b.review.rating || 0) - (a.review.rating || 0)).slice(0, 3);
+    console.log(highRatingPosts);
 
     return HttpResponse.json({ data: [matchingPostCount, randomDogs, recentMatchingPosts, highRatingPosts] });
   }),

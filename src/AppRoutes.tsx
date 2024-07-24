@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
-import { MemberHeader } from './components/header/Member';
-import { Footer } from './components/footer/Footer';
+import { MemberHeader } from '@components/header/Member';
+import { Footer } from '@components/footer/Footer';
 
 import {
   CertificationCreatePage,
@@ -14,12 +14,12 @@ import {
   MatchingListPage,
   MyPage,
   SignUpPage,
-} from './pages';
-import { useScrollTop } from './hooks/useScrollTop';
-import { NotFound } from 'common/state/NotFoundPage';
-import { useLoginCheck } from './hooks/useLoginCheck';
-import { Profile } from './pages/Profile';
-import { AlertControll } from './components/matching/AlertControll';
+  Profile,
+} from '@pages/index';
+import { useScrollTop } from '@hooks/useScrollTop';
+import { NotFound } from '@common/state/NotFoundPage';
+import { useLoginCheck } from '@hooks/useLoginCheck';
+import { AlertControll } from '@components/matching/AlertControll';
 
 export function AppRoutes() {
   useScrollTop();

@@ -1,13 +1,13 @@
 import { LocationOn, AccessTime } from '@mui/icons-material';
 import { Card, CardContainer } from '../certification/PostCard.styled';
-import { MatchingPostType } from '../../types';
-import { ProfileInfo } from 'common/user/ProfileInfo';
-import durationTimeFormat from '../../utils/durationTimeFormat';
-import dateTimeFormat from '../../utils/dateTimeFormat';
-import { EditMenu } from 'common/user/EditMenu';
+import { MatchingPostType } from '@types';
+import { ProfileInfo } from '@common/user/ProfileInfo';
+import durationTimeFormat from '@utils/durationTimeFormat';
+import dateTimeFormat from '@utils/dateTimeFormat';
+import { EditMenu } from '@common/user/EditMenu';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import { WalkInfo, DogIcon, MatchingStatusImage } from './Card.style';
 
 interface MatchingCardProps {
@@ -26,13 +26,13 @@ export function MatchingCard({ post }: MatchingCardProps) {
 
   return (
     <CardContainer to={`/matching/${_id}`} className={`pointer ${matchingStatus !== 'process' && 'ended'}`}>
-      <ProfileInfo _id={user._id} nickname={user.nickname} userImg={user.userImg} time={createdAt} size="small" />
+      <ProfileInfo _id={user._id} nickname={user.nickname} profileImg={user.profileImg} time={createdAt} size="small" />
       {_user._id === user._id && matchingStatus === 'process' && <EditMenu size="small" post={post} />}
-      <img src={userDog.dogImg} className="main-img" />
+      <img src={userDog.profileImg} className="main-img" />
       <WalkInfo>
         <div>
           <DogIcon src="/svg/card_dog_icon.svg" />
-          <span>{userDog.dogName}</span>
+          <span>{userDog.name}</span>
         </div>
         <div className="location">
           <LocationOn sx={{ fontSize: '120%' }} />

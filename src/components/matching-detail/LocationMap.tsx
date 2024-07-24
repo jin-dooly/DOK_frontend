@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
+import { RootState } from '@store/index';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { MapContainer } from './LocationMap.style';
 

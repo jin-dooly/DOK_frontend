@@ -1,10 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenErrorModifyInfoAlert, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar } from 'store/index';
-import { ButtonMain } from 'common/button/ButtonMain';
+import { AppDispatch, RootState, setCheckModifyInfoIsValid, setOpenErrorModifyInfoAlert, setOpenModifyInfoAlert, setOpenSuccessModifyInfoSnackbar } from '@store/index';
+import { ButtonMain } from '@common/button/ButtonMain';
 import TextField from '@mui/material/TextField';
 import { ButtonContainer, ChangePasswordContainer } from './ChangePassword.style';
-import { userUrl } from 'api/apiUrls';
+import { userUrl } from '@api/apiUrls';
 
 export function ChangePassword() {
   const dispatch = useDispatch<AppDispatch>();

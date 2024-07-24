@@ -19,12 +19,17 @@
     "baseUrl": ".",
     "paths": {
       "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"],
-      "common/*": ["src/components/common/*"],
-      "api/*": ["src/api/*"],
-      "store/*": ["src/store/*"],
-      "svg/*": ["public/svg/*"],
-      "image/*": ["public/image/*"],
-      "temp/*": ["public/temp/*"]
+      "@api/*": ["src/api/*"],
+      "@components/*": ["src/components/*"],
+      "@common/*": ["src/components/common/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages/*": ["src/pages/*"],
+      "@store/*": ["src/store/*"],
+      "@styles/*": ["src/styles/*"],
+      "@types": ["src/types"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
+      "@/*": ["src/*"]
     },
     "types": ["kakao.maps.d.ts"]
   },

@@ -1,10 +1,10 @@
 import { DogButton } from './DogButton';
 import { useEffect, useState } from 'react';
-import { AppDispatch, RootState, setDog } from 'store/index';
+import { AppDispatch, RootState, setDog } from '@store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { Add, Dog, Writing } from './Introduce.style';
 import { TextField, Button } from '@mui/material';
-import { userUrl } from 'api/apiUrls';
+import { userUrl } from '@api/apiUrls';
 
 export const Introduce = () => {
   const dispatch = useDispatch<AppDispatch>();

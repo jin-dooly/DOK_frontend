@@ -1,6 +1,6 @@
 import BannerImage from '/svg/matching_banner_image.svg';
 import { Button } from '@mui/material';
-import { ListPageBanner } from 'common/list-page/ListPageBanner';
+import { ListPageBanner } from '@common/list-page/ListPageBanner';
 import { useNavigate } from 'react-router-dom';
 import { RightBox } from './Banner.styled';
 

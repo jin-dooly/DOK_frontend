@@ -1,17 +1,11 @@
 import React from 'react';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: [
-      { find: 'common', replacement: '/src/components/common' },
-      { find: 'api', replacement: '/src/api' },
-      { find: 'store', replacement: '/src/store' },
-    ],
-  },
+  plugins: [react(), tsconfigPaths()],
   // server: {
   //   proxy: {
   //     // 프락시 인스턴스 사용

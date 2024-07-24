@@ -1,6 +1,6 @@
 import { Buttons, FormLayout } from './PostCreateFormLayout.styled';
-import { ButtonMain } from 'common/button/ButtonMain';
-import { ButtonGray } from 'common/button/ButtonGray';
+import { ButtonMain } from '@common/button/ButtonMain';
+import { ButtonGray } from '@common/button/ButtonGray';
 
 interface PostCreateFormLayoutProps {
   title: string;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ItemContainer = styled.div`
   height: 50px;
@@ -31,5 +31,4 @@ export const UserInfo = styled(ItemLayout)`
     font-size: 16px;
     font-weight: 500;
   }
-
 `;

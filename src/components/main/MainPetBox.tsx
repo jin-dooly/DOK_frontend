@@ -5,8 +5,8 @@ import { Pet } from './MainPetBox.styled';
 
 interface MainPetBoxProps {
   petData: {
-    dogImg: string;
-    dogName: string;
+    profileImg: string;
+    name: string;
     gender: string;
   };
   className: string;
@@ -15,10 +15,10 @@ interface MainPetBoxProps {
 export function MainPetBox({ petData, className }: MainPetBoxProps) {
   return (
     <Pet className={`pet-box ${className}`}>
-      <img className="pet-img" src={petData.dogImg || defaultImg} />
+      <img className="pet-img" src={petData.profileImg || defaultImg} />
       <div className="gender-name">
         <img src={petData.gender === 'Female' ? Female : Male} />
-        <div>{petData.dogName}</div>
+        <div>{petData.name}</div>
       </div>
     </Pet>
   );

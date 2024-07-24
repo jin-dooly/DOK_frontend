@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ProfileInfo } from '../components/my-page/ProfileInfo';
-import { Navbar } from '../components/my-page/Navbar';
+import { ProfileInfo } from '@components/my-page/ProfileInfo';
+import { Navbar } from '@components/my-page/Navbar';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
-import { Forbidden } from 'common/state/Forbidden';
+import { RootState } from '@store/index';
+import { Forbidden } from '@common/state/Forbidden';
 
 export function MyPage() {
   const { user } = useSelector((state: RootState) => state.user);

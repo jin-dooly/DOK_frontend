@@ -1,6 +1,6 @@
-import { HttpResponse, PathParams, StrictRequest, delay, http } from 'msw';
-import { userUrl as root } from '../../apiUrls';
-import { DogType, initUserType, UserType } from 'src/types';
+import { HttpResponse, PathParams, delay, http } from 'msw';
+import { userUrl as root } from '@api/apiUrls';
+import { DogType, initUserType, UserType } from '@types';
 import dayjs from 'dayjs';
 
 type filteredUserType = Omit<UserType, 'name' | 'phoneNumber' | 'userId' | 'password' | 'createdAt' | 'updatedAt' | 'deletedAt' | '__v'>;
@@ -77,7 +77,7 @@ export const userHandlers = [
     const body = await request.json();
     const { userId, password, name, nickname, address, phoneNumber } = body;
     if (!(userId && password && name && nickname && address && phoneNumber)) {
-      return HttpResponse.json({ error: 'Not Found' }, { status: 404 });
+      return HttpResponse.json({ error: 'Bad Request' }, { status: 400 });
     }
 
     const newUser = { ...initUserType, ...body, createdAt: dayjs() };

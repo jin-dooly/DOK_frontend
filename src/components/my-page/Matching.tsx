@@ -1,15 +1,15 @@
 import { MatchingCard } from '../matching/Card';
-import { TopBarTitle } from 'common/list-page/TopBarTitle';
-import { CardListContainer } from '../../styles/CardListContainer.styled';
+import { TopBarTitle } from '@common/list-page/TopBarTitle';
+import { CardListContainer } from '@styles/CardListContainer.styled';
 import { Children, useEffect, useState } from 'react';
-import { AlertError } from 'common/alert/AlertError';
-import { ScrollToTopButton } from 'common/button/ScrollTopButton';
+import { AlertError } from '@common/alert/AlertError';
+import { ScrollToTopButton } from '@common/button/ScrollTopButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, addMatchingPosts, resetMatchingPosts, setMatchingPostCount } from 'store/index';
-import { EmptyData } from 'common/state/EmptyData';
-import { Loading } from 'common/state/Loading';
+import { AppDispatch, RootState, addMatchingPosts, resetMatchingPosts, setMatchingPostCount } from '@store/index';
+import { EmptyData } from '@common/state/EmptyData';
+import { Loading } from '@common/state/Loading';
 import { MainFrame, Section, SubFrame, TitleFrame } from './Matching.style';
-import { myPageUrl } from 'api/apiUrls';
+import { myPageUrl } from '@api/apiUrls';
 
 export const Matching = () => {
   const dispatch = useDispatch<AppDispatch>();

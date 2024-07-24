@@ -3,10 +3,10 @@ import userImage from '/svg/user_image1.svg';
 import { Input, IconButton } from '@mui/material';
 import { Send } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setOpenAlertLogin, addMatchingComment, updateMatchingComment } from 'store/index';
+import { AppDispatch, RootState, setOpenAlertLogin, addMatchingComment, updateMatchingComment } from '@store/index';
 import { useState } from 'react';
-import { matchingPostDetailUrl } from 'api/apiUrls';
-import { AlertLogin } from 'common/alert/AlertLogin';
+import { matchingPostDetailUrl } from '@api/apiUrls';
+import { AlertLogin } from '@common/alert/AlertLogin';
 
 interface CommentProps {
   commentType?: 'reply';
@@ -96,7 +96,7 @@ export function CommentInput({ commentType, parentCommentId, editText, commentId
   return (
     <InputLayout>
       <AlertLogin isBack={false} />
-      <UserImg src={user.userImg || userImage} className={`user-img ${commentType}`} />
+      <UserImg src={user.profileImg || userImage} className={`user-img ${commentType}`} />
       <Input
         placeholder="댓글 추가"
         value={text}

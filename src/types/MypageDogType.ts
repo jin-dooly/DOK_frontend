@@ -1,25 +1,25 @@
-import { MypageUserType, initMypageUserType } from "./MypageUserType";
+import { MypageUserType, initMypageUserType } from './MypageUserType';
 
 export interface MypageDogType {
   _id: string;
   user: MypageUserType;
-  dogName: string;
-  dogImg: string;
+  name: string;
+  profileImg: string;
   birth: Date | string;
-  dogType: string;
+  type: string;
   gender: string;
   personality: string;
   note: string;
 }
 
 export const initMypageDogType = {
-  _id: "",
+  _id: '',
   user: initMypageUserType,
-  dogName: "",
-  dogImg: "",
-  birth: "",
-  dogType: "",
-  gender: "",
-  personality: "",
-  note: "",
+  name: '',
+  profileImg: '',
+  birth: '',
+  type: '',
+  gender: '',
+  personality: '',
+  note: '',
 };

@@ -3,7 +3,7 @@ import { Box, Button, TextField, FormControlLabel, Checkbox, Modal } from '@mui/
 import { PersonInformation, TrilateralAgreement } from './Agreement';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
-import { userUrl } from 'api/apiUrls';
+import { userUrl } from '@api/apiUrls';
 import { Agreement, ButtonDiv, LoginDiv, MainDiv } from './SignUp.style';
 
 export function SignUp() {

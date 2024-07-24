@@ -1,6 +1,6 @@
 import { RequestHandlerType } from 'src/types';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, setSelectedHandler } from 'store/index';
+import { AppDispatch, setSelectedHandler } from '@store/index';
 import userImage from '/svg/user_image1.svg';
 import { ItemContainer, ItemLayout, UserImg, UserInfo } from './HandlerListItem.style';
 import { Button } from '@mui/material';
@@ -13,7 +13,7 @@ interface type {
 export function HandlerListItem({ handler }: type) {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { nickname, _id: id, userImg } = handler.user;
+  const { nickname, _id: id, profileImg } = handler.user;
 
   //핸들러 선택 시 해당 핸들러 정보 저장
   const handleOnClick = () => {
@@ -29,7 +29,7 @@ export function HandlerListItem({ handler }: type) {
   return (
     <ItemContainer onClick={handleOnClick}>
       <ItemLayout>
-        <UserImg src={userImg || userImage} className="user-img" />
+        <UserImg src={profileImg || userImage} className="user-img" />
         <UserInfo>
           <span>{nickname}</span>
         </UserInfo>

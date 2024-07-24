@@ -2,13 +2,13 @@ import { LocationOn, AccessTime, CalendarToday, MonetizationOn, Chat } from '@mu
 import { HandlerRequestButton } from './HandlerRequestButton';
 import { HandlerSelectContainer } from './HandlerSelectContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setRequestHandlers } from 'store/index';
+import { AppDispatch, RootState, setRequestHandlers } from '@store/index';
 import { LocationMap } from './LocationMap';
 import { useEffect } from 'react';
-import dateTimeFormat from '../../utils/dateTimeFormat';
-import durationTimeFormat from '../../utils/durationTimeFormat';
-import calculateWalkingTime from '../../utils/calculateWalkingTime';
-import { matchingPostDetailUrl } from 'api/apiUrls';
+import dateTimeFormat from '@utils/dateTimeFormat';
+import durationTimeFormat from '@utils/durationTimeFormat';
+import calculateWalkingTime from '@utils/calculateWalkingTime';
+import { matchingPostDetailUrl } from '@api/apiUrls';
 import { HandlerContainer, MapLayout, TextAlignLayout, WalkDetailLayout, WalkInfoBox, WalkInfoItem } from './WalkDetailInfo.style';
 
 export function WalkDetailInfo() {

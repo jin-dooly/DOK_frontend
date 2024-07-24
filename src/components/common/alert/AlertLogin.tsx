@@ -1,9 +1,9 @@
 import { Alert, AlertTitle, Backdrop, Box, Button, Snackbar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useLoginCheck } from '../../../hooks/useLoginCheck';
-import { setOpenAlertLogin } from 'store/alertSlice';
-import { AppDispatch, RootState } from 'store/store';
+import { useLoginCheck } from '@hooks/useLoginCheck';
+import { setOpenAlertLogin } from '@store/alertSlice';
+import { AppDispatch, RootState } from '@store/store';
 
 interface AlertErrorProps {
   isBack?: boolean;

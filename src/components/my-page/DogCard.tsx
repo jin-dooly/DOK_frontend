@@ -1,31 +1,31 @@
-import calculateAge from '../../utils/calculateAge';
+import calculateAge from '@utils/calculateAge';
 import dayjs from 'dayjs';
 import { InfoFrame, TotalFrame } from './DogCard.style';
 
 interface DogType {
-  dogName: string;
+  name: string;
   birth: string | Date;
   gender: string;
-  dogType: string;
+  type: string;
   personality: string;
   note: string;
-  dogImg: string;
+  profileImg: string;
 }
 
-export const DogCard = ({ dogName, gender, birth, dogType, personality, note, dogImg }: DogType) => {
+export const DogCard = ({ name, gender, birth, type, personality, note, profileImg }: DogType) => {
   return (
     <TotalFrame>
-      <img src={dogImg ? dogImg : '/dok_logo.png'} />
+      <img src={profileImg ? profileImg : '/dok_logo.png'} />
       <InfoFrame>
         <div className="name">
           <div>
             <img src="/svg/dog_default.svg" alt="강아지아이콘" style={{ marginRight: '2.5px' }} />
           </div>
-          <div>{dogName}</div>
+          <div>{name}</div>
         </div>
         <div className="species">
           <div>견종</div>
-          <div>{dogType}</div>
+          <div>{type}</div>
         </div>
         <div className="age">
           <div>나이</div>

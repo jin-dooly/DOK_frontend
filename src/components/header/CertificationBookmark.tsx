@@ -2,12 +2,12 @@ import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/m
 import { WarningAmberRounded, WarningRounded } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
-import { MatchingPostType } from '../../types';
-import dateTimeFormat from '../../utils/dateTimeFormat';
-import durationTimeFormat from '../../utils/durationTimeFormat';
+import { RootState } from '@store/index';
+import { MatchingPostType } from '@types';
+import dateTimeFormat from '@utils/dateTimeFormat';
+import durationTimeFormat from '@utils/durationTimeFormat';
 import { Certification, TableContainer } from './CertificationBookmark.styled';
-import { myPageUrl } from 'api/apiUrls';
+import { myPageUrl } from '@api/apiUrls';
 
 export function CertificationBookmark() {
   const { user } = useSelector((state: RootState) => state.user);
@@ -70,7 +70,7 @@ export function CertificationBookmark() {
                       <TableRow key={post._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell component="th" scope="row">
                           <a href={`/matching/${post._id}`}>
-                            {post.userDog.dogName} | {dateTimeFormat(post.walkingDate, 'date-time')} ({durationTimeFormat(post.walkingDuration)})
+                            {post.userDog.name} | {dateTimeFormat(post.walkingDate, 'date-time')} ({durationTimeFormat(post.walkingDuration)})
                           </a>
                         </TableCell>
                         <TableCell align="right">

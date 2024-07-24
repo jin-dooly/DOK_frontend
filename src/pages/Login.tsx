@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Login } from '../components/login/Login';
+import { Login } from '@components/login/Login';
 import { useSelector } from 'react-redux';
-import { RootState } from 'store/index';
-import { Forbidden } from 'common/state/Forbidden';
+import { RootState } from '@store/index';
+import { Forbidden } from '@common/state/Forbidden';
 
 export function LoginPage() {
   const { user } = useSelector((state: RootState) => state.user);

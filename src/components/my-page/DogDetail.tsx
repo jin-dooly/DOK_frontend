@@ -1,27 +1,27 @@
 import { Button, TextField, Radio, RadioGroup, FormControlLabel, FormControl } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState, setDog } from 'store/index';
+import { AppDispatch, RootState, setDog } from '@store/index';
 import { Link } from 'react-router-dom';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import dayjs from 'dayjs';
-import { AlertError } from 'common/alert/AlertError';
+import { AlertError } from '@common/alert/AlertError';
 import defaultImage from '/image/dogDefaultImage.png';
 import { AddButton, InfoFrame, TotalFrame } from './DogDetail.style';
-import { userUrl, uploadImageUrl } from 'api/apiUrls';
+import { userUrl, uploadImageUrl } from '@api/apiUrls';
 
 export const DogDetail = () => {
   const [clicked, setClicked] = useState<boolean>(false);
   const [addCard, setAddCard] = useState<boolean>(true);
   const [openErrorAlert, setOpenErrorAlert] = useState<boolean>(false);
   const [imagePath, setImagePath] = useState<string>(''); // 기본 이미지 설정
-  const [dogName, setDogName] = useState<string>('');
-  const [dogImg, setDogImg] = useState<string>('');
+  const [name, setname] = useState<string>('');
+  const [profileImg, setprofileImg] = useState<string>('');
   const [birth, setBirth] = useState<string>('2023/01/01');
   const [gender, setGender] = useState<string>('male');
-  const [dogType, setDogType] = useState<string>('');
+  const [type, setDogType] = useState<string>('');
   const [personality, setPersonality] = useState<string>('active');
   const [note, setNote] = useState<string>('');
   const { user } = useSelector((state: RootState) => state.user);
@@ -58,11 +58,11 @@ export const DogDetail = () => {
         },
         body: JSON.stringify({
           user: user.userId,
-          dogName: dogName,
-          dogImg: dogImg,
+          name: name,
+          profileImg: profileImg,
           birth: birth,
           gender: gender,
-          dogType: dogType,
+          type: type,
           personality: personality,
           note: note,
         }),
@@ -94,7 +94,7 @@ export const DogDetail = () => {
   // 데이터 초기화
   // 하기 useEffect의 데이터 초기화랑은 다르게 사용됨.
   const initializeData = () => {
-    setDogName('');
+    setname('');
     setImagePath(defaultImage);
     setImagePath('');
     setBirth('2023/01/01');
@@ -141,7 +141,7 @@ export const DogDetail = () => {
         const data = await res.json();
 
         if (res.ok) {
-          setDogImg(data[0]);
+          setprofileImg(data[0]);
         } else {
           console.log(data);
         }
@@ -161,14 +161,14 @@ export const DogDetail = () => {
   // 카드 등록하기 버튼은 기본적으로 클릭 안되게
   // 이미지, 강아지이름, 견종 모두 입력시에만 등록 버튼이 활성화 되어야함.
   useEffect(() => {
-    !imagePath || !dogName || !dogType ? null : setAddCard(false);
-  }, [imagePath, dogName, dogType]);
+    !imagePath || !name || !type ? null : setAddCard(false);
+  }, [imagePath, name, type]);
 
   // 클릭될 때 마다 카드에 입력된 데이터 초기화(취소했을 때 데이터 남아있는것 방지)
   useEffect(() => {
-    setDogName('');
+    setname('');
     setImagePath(defaultImage);
-    setDogImg('');
+    setprofileImg('');
     setBirth('2023/01/01');
     setGender('male');
     setDogType('');
@@ -201,8 +201,8 @@ export const DogDetail = () => {
                 <TextField
                   variant="standard"
                   placeholder="이름을 작성해주세요"
-                  defaultValue={dogName}
-                  onChange={(e) => setDogName(e.target.value)}
+                  defaultValue={name}
+                  onChange={(e) => setname(e.target.value)}
                   sx={{
                     '& .MuiInputBase-input': {
                       padding: '4%',
@@ -219,7 +219,7 @@ export const DogDetail = () => {
                 <TextField
                   variant="standard"
                   placeholder="견종을 작성해주세요"
-                  defaultValue={dogType}
+                  defaultValue={type}
                   onChange={(e) => setDogType(e.target.value)}
                   sx={{
                     '& .MuiInputBase-input': {
